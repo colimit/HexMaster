@@ -1,0 +1,25 @@
+<h2> Position Summary <h2>
+	
+<h3> Your Game </h3>
+
+<p> <%= @board_html.html_safe %> <p>
+	
+<% if @advice_board_html %>
+	<h3> Top Move </h3>
+
+	<p> <%= @advice_board_html.html_safe %> <p>
+<% end %>
+
+<% if @master_moves.empty? && @all_moves.empty? %>
+		<h3> No matches found for this position </h3>
+	<% else %>
+
+		<% unless @master_moves.empty? %>
+			<h3> Moves of top players in this position </h3>
+				<%= render "layouts/move_display", :moves => @master_moves  %>
+			<br>
+		<% end %>
+		<h3> All moves in this position </h3>	
+		
+			<%= render "layouts/move_display", :moves => @all_moves  %>
+<% end %>
