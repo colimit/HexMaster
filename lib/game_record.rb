@@ -46,67 +46,47 @@ class GameRecord
     self.new(record_options) 
   end
   
-  def save_meta_data!
+  def find_or_build_meta_data
     game = Game.find_by(little_golem_id: @game_attributes[:little_golem_id])
     if game
       game.red_master  ||= @game_attributes[:red_master]
       game.blue_master ||= @game_attributes[:blue_master]
-      game.save! && game
+      game
     else
-      Game.create!(
-        @game_attributes.reject { |key, _| :move_list == key }
-      )
+      Game.new(@game_attributes.reject { |key, _| :move_list == key })
     end
   end
   
   def save!
-    game     = save_meta_data!
-    board    = Board.new(@game_attributes[:size])
-    position = board.find_or_create_position!
-    GamePosition.create!(
-      game_id: game.id, 
-      position_id: position.id, 
+    game  = find_or_build_meta_data
+    board = Board.new(@game_attributes[:size])
+    game.moves << Move.new(
+      position_digest: board.position_digest, 
       last_move: nil,
       turn_color: board.turn_color,
       last_move_number: 0
       )
     @game_attributes[:move_list].each_with_index do |move, index|
       board.handle_move(move)
-      position = board.find_or_create_position!
-      GamePosition.create!(
-        game_id: game.id, 
-        position_id: position.id, 
+      game.moves << Move.new(
+        position_digest: board.position_digest, 
         last_move: move,
         turn_color: board.turn_color,
         last_move_number: index + 1
         )
     end
+    game.save!
   end
   
   def self.save_player_file!(file, masters = [])
     ActiveRecord::Base.transaction do
       File.open(file).each do |line|
-        line.chomp!
-        next if line.empty? 
-        game = GameRecord.read_hsgf(line, masters)
-        game.save! if game.result
+        next if line.chomp!.blank? 
+        game_record = GameRecord.read_hsgf(line, masters)
+        game_record.save! if game_record.result
       end
     end
   end
   
-  
-  
-  private
-  
-  # def self.coord(move_string)
-  #   return move_string if ["resign", "swap"].include?(move_string)
-  #   raise "bad move_string" unless move_string.length > 2
-  #   move_string.chars.map { |char| char.ord - a.ord }
-  # end
 end
 
-
-# 
-# game_string = "(;FF[4]EV[hex.in.DEFAULT.14]PB[firehand]PW[Bundle Gerbe]SZ[13]RE[W]GC[ game 1578981]SO[http://www.littlegolem.com];W[ac];B[ie];W[fh];B[dj];W[ji];B[fg];W[hf];B[he];W[ef];B[ge];W[jf];B[kd];W[jd];B[je];W[dh];B[ee];W[cf];B[dg];W[bh];B[ed];W[resign])"
-# 
-# GameRecord.read_hsgf(game_string).save!

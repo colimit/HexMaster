@@ -16,19 +16,6 @@ ActiveRecord::Schema.define(version: 20140219071505) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "game_positions", force: true do |t|
-    t.integer  "game_id",          null: false
-    t.integer  "position_id",      null: false
-    t.string   "last_move"
-    t.string   "turn_color"
-    t.integer  "last_move_number", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "game_positions", ["game_id"], name: "index_game_positions_on_game_id", using: :btree
-  add_index "game_positions", ["position_id"], name: "index_game_positions_on_position_id", using: :btree
-
   create_table "games", force: true do |t|
     t.string   "red_name"
     t.string   "blue_name"
@@ -43,12 +30,17 @@ ActiveRecord::Schema.define(version: 20140219071505) do
 
   add_index "games", ["little_golem_id"], name: "index_games_on_little_golem_id", unique: true, using: :btree
 
-  create_table "positions", force: true do |t|
-    t.string   "position_digest", null: false
+  create_table "moves", force: true do |t|
+    t.integer  "game_id",          null: false
+    t.string   "last_move"
+    t.string   "turn_color"
+    t.integer  "last_move_number", null: false
+    t.string   "position_digest",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "positions", ["position_digest"], name: "index_positions_on_position_digest", unique: true, using: :btree
+  add_index "moves", ["game_id"], name: "index_moves_on_game_id", using: :btree
+  add_index "moves", ["position_digest"], name: "index_moves_on_position_digest", using: :btree
 
 end

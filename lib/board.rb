@@ -116,7 +116,6 @@ class Board
     RecordSearcher.next_moves_data(position_digest)
   end
   
-  
   #finds next moves data, taking into account the symmetries involved.
   def symmetric_next_moves_data
     start_digest = position_digest
@@ -156,7 +155,6 @@ class Board
     end
   end
   
-  
   def self.to_move(coord)
     if coord.is_a?(String) && coord.length == 2
       coord
@@ -165,11 +163,6 @@ class Board
     else
       raise MalformedCoordError, "Malformed Coordinate"
     end
-  end
-  
-  #saves position to the database, along with an entry for the game
-  def find_or_create_position!
-    Position.find_or_create_by!(position_digest: position_digest)
   end
   
   #returns a unique string for each position. Used to look up games
