@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  commentary_id: 1
+  move_id: 1
+
+two:
+  commentary_id: 1
+  move_id: 1

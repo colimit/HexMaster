@@ -16,7 +16,7 @@ class AdvisorsController < ApplicationController
           ).to_s
     
     game_hsgf = RestClient.get(game_url)
-    @board = Board.end_board(game_hsgf)
+    @board = Board.position(game_hsgf)
     @board_html = @board.to_html
     @advice_hash = @board.symmetric_next_moves_data
     @advice_hash[:master] ||= []

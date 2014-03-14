@@ -13,8 +13,8 @@ class Board
                     :blue => "B" #"\u25CF".encode("UTF-8").colorize(:blue)
                   }
   
-  def initialize(size, board = nil, turn_color = :red, winner = nil)
-    @size       = size
+  def initialize(size = 13, board = nil, turn_color = :red, winner = nil)
+    @size       = size 
     @board      = board || Array.new(size) { Array.new(size) { 0 } }
     @turn_color = turn_color
     @winner     = winner
@@ -140,7 +140,7 @@ class Board
   end
   
   def self.advise(hsgf_string)
-    self.end_board(hsgf_string).symmetric_next_moves_data
+    self.position(hsgf_string).symmetric_next_moves_data
   end
   
   #convert coord to a pair [row, col] from other formats. out of bounds
@@ -310,9 +310,9 @@ class Board
       squares
     end
     
-    def self.end_board(hsgf_string)
+    def self.position(hsgf_string)
       record = GameRecord.read_hsgf(hsgf_string)
-      record.end_board
+      record.position
     end
     
     def pass_turn

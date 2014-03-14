@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219071505) do
+ActiveRecord::Schema.define(version: 20140313235557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.integer  "move_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["move_id"], name: "index_comments_on_move_id", using: :btree
 
   create_table "games", force: true do |t|
     t.string   "red_name"
@@ -31,11 +40,11 @@ ActiveRecord::Schema.define(version: 20140219071505) do
   add_index "games", ["little_golem_id"], name: "index_games_on_little_golem_id", unique: true, using: :btree
 
   create_table "moves", force: true do |t|
-    t.integer  "game_id",          null: false
-    t.string   "last_move"
+    t.integer  "game_id",         null: false
+    t.string   "move"
     t.string   "turn_color"
-    t.integer  "last_move_number", null: false
-    t.string   "position_digest",  null: false
+    t.integer  "move_number",     null: false
+    t.string   "position_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

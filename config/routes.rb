@@ -1,7 +1,11 @@
 HexApp::Application.routes.draw do
-  resources :games, :only => [:show, :index]
+  resources :games, :only => [:show, :index] do
+    resources :moves, :only => [:show] do
+      resources :comments, :only => [:index]
+    end
+  end
   resources :advisors, :only => [:new, :create, :show]
-  
+  resources :comments, :only => [:create]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
