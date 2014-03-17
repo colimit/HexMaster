@@ -105,7 +105,7 @@ class Board
     elsif move == "resign"
       resign
     else
-      raise IllegalMoveError, "Illegal move" unless self[move] == :empty
+      raise IllegalMoveError, "Illegal move: #{move}" unless self[move] == :empty
       self[move] = self.turn_color
       pass_turn
     end
@@ -310,9 +310,9 @@ class Board
       squares
     end
     
-    def self.position(hsgf_string)
-      record = GameRecord.read_hsgf(hsgf_string)
-      record.position
+    def self.position(hsgf_string, move_number = nil)
+      record = Game.read_hsgf(hsgf_string)
+      record.position(move_number)
     end
     
     def pass_turn

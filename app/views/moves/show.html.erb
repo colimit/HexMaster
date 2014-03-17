@@ -1,1 +1,21 @@
 <%= render "layouts/board", :board => @board %>
+
+<p> <%= @board.turn_color.capitalize %>'s turn  Last move: <%= @move.move %> </p>
+
+<p>
+<%= link_to "next", move_url(@move.next)%> </br>
+<%= link_to "previous", move_url(@move.previous)%>
+</p>
+
+<form action="<%= comments_path %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="comment[move_id]" value="<%= @move.id %>" id="comment[move_id]">
+	
+	<textarea name="comment[body]" rows="8" cols="40"></textarea>
+
+	<p><input type="submit" value="post comment"></p>
+</form>
+<ul>
+<% @comments.each do |comment| %>
+	<li> <p> <%= comment.body %> </p> </li>
+<% end %>
+</ul>

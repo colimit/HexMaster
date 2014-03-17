@@ -1,0 +1,24 @@
+<%= link_to "Game advisor", new_advisor_url %>
+<br>
+<table>
+<tr>
+	<th></th> <th> red player</th> <th> blue player </th> 
+</tr>
+<h2> Recently Commented Games </h2>
+<% @games.each do |game| %>
+	<tr>
+		<td>
+			<%= link_to "Game: #{game.little_golem_id}",
+				 game_start_url(game.little_golem_id)%>
+		</td>
+		<td>
+			<%= game.red_name %>
+		</td>
+
+		<td>
+			<%= game.blue_name %>
+		</td>
+	</tr>
+<% end %>
+</h2>
+</table>

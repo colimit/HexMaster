@@ -9,8 +9,8 @@
 
 
 ActiveRecord::Base.transaction do
-  GameRecord.save_player_file!("db/records/daniel_sepczuk.hsgf",["Daniel Sepczuk"])
-  GameRecord.save_player_file!("db/records/maciej_celuch.hsgf",["Maciej Celuch"])
-  GameRecord.save_player_file!("db/records/iLyN_Sin.hsgf",["iLyN Sin"])
-  GameRecord.save_player_file!("db/records/arek_kulczycki.hsgf",["Arek Kulczycki"])
+  Game.save_player_file!("db/records/daniel_sepczuk.hsgf",["Daniel Sepczuk"])
+  Game.save_player_file!("db/records/maciej_celuch.hsgf",["Maciej Celuch"])
+  Game.save_player_file!("db/records/iLyN_Sin.hsgf",["iLyN Sin"])
+  Game.save_player_file!("db/records/arek_kulczycki.hsgf",["Arek Kulczycki"])
 end

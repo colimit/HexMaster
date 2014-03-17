@@ -38,11 +38,15 @@ gem 'rest-client'
 
 gem 'addressable'
 
-gem 'better_errors'
+gem 'better_errors', group: [:development]
 
-gem 'binding_of_caller'
+
+gem 'binding_of_caller', group: [:development]
+
 
 gem 'activerecord-import'
+
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -54,4 +58,6 @@ gem 'activerecord-import'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+ gem 'debugger', group: [:development, :test]
+ 
+ ruby "2.1.0"
