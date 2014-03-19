@@ -46,6 +46,8 @@ gem 'binding_of_caller', group: [:development]
 
 gem 'activerecord-import'
 
+gem 'backbone-on-rails'
+
 gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
