@@ -7,7 +7,7 @@
 		
 		initialize: function () {
 			this.size = this.model.get("size");
-			this.board = new HexApp.Board(this.size);
+			this.gameNav = new HexApp.GameNav(this.model);
 			this.listenTo(this.model, "sync", this.render);
 			this.boardView = new HexApp.Views.BoardShow({ board: this.board });
 		},

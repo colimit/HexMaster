@@ -32,17 +32,20 @@
 		adjacency: [[-1, 0], [0, -1], [-1, 1], [1, -1], [1, 0], [0, 1]],
 	
 		swap: function(){
-			var newRows = [];
-			var color = this.turnColor;
+			var boardCopy = this.duplicate();
+			this.clear();
 			for (var i = 0; i < this.size; i++){
-				newRows.push([]);
 				for (var j = 0; j < this.size; j++){
-					newRows[i][j] = this.oppositeColor(this.getHex([j, i]));
+					var color =  this.oppositeColor(boardCopy.getHex([j, i]));
+					this.setHex([i, j], color);
 				}
 			}
-			this.rows = newRows;
-			this.turnColor = this.oppositeColor(color);
-			this.trigger("swap");
+			this.changeTurn();
+		},
+		
+		changeTurn: function () {
+			this.turnColor = this.oppositeColor(this.turnColor);
+			this.trigger("changeTurn");
 		},
 	
 		oppositeColor: function(color){
@@ -233,10 +236,11 @@
 		clear: function () {
 			for (var i = 0; i < this.size; i++){
 				for (var j = 0; j < this.size; j++){
-					this.setHex([i,j], 0)
+					this.setHex([i,j], 0);
 				}
 			}
 		}
+		
 		
 	
 	};

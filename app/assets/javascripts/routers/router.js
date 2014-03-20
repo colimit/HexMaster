@@ -16,8 +16,6 @@
 			var board = new HexApp.Board(13);
 			var view = new HexApp.Views.BoardShow({ board: board });
 			this._swapview(view);
-			board.handleMove("e4");
-			board.handleMove("e5");
 		},
 		
 		gameShow: function (id) {
