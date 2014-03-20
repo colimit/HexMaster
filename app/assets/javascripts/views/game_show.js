@@ -6,10 +6,11 @@
 		template: JST["games/show"],
 		
 		initialize: function () {
-			this.size = this.model.get("size");
 			this.gameNav = new HexApp.GameNav(this.model);
-			this.listenTo(this.model, "sync", this.render);
-			this.boardView = new HexApp.Views.BoardShow({ board: this.board });
+			this.boardView = new HexApp.Views.BoardShow({ 
+				board: this.gameNav.board
+			});
+			this.gameMovesView = new HexApp.Views.GameMoves(model: this.model);
 		},
 		
 		
@@ -25,15 +26,8 @@
 			this.$el.html(renderedContent);
 			this.$("#board").append(this.boardView.$el);
 			this.boardView.delegateEvents();
-			this.resetBoard();
+			this.gameNav.jump();
 			return this;
-		},
-		
-		resetBoard: function () {
-			this.board.clear();
-			if (this.model.get("moves")) { 
-				this.board.handleMoves(this.model.get("moves")); 
-			}
 		}
 		
 	});

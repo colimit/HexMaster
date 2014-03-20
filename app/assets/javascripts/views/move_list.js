@@ -1,17 +1,29 @@
 (function(){
 	/*global HexApp, Backbone, $ */
 	"use strict";
-	HexApp.Views.BoardShow = Backbone.View.extend({
+	HexApp.Views.MoveList = Backbone.View.extend({
+		
+		initialize: function() {
+			that = this
+			that.moveViews = []
+			this.model.get("moves").forEach( function(move, index){
+				that.moves.push(new HexApp.Views.Move({
+					move: move, 
+					number: index + 1 
+				}))
+			});
+		}
 	
-		initialize: function (options){
-			this.board = options.board;
-			this.size = this.board.size;
-			this.$el.addClass("hex-board" + this.size);
-			this.makeSpaces();
-			this.affixSpaces();
-			this.board.on("setHex", this.setSpace.bind(this));
-		},
-	
+		tagName: "li",
+		
+		className: "game-moves",
+		
+		render: function() {
+			this.moveViews.forEach( function(moveView){
+				this.$el.append(moveView.render().$el)
+			})
+			return this
+		}
 	
 	});
 })();
