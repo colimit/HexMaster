@@ -1,0 +1,28 @@
+.hex-board13 {
+	background-image: image-url("hexboard13.png");
+	width: 560px;
+	height: 336px;
+	position: relative;
+	background-repeat: no-repeat;
+}
+
+.hex-space {
+	width: 26px;
+	height: 26px;
+	position: absolute;
+}
+
+.red {
+	background: image-url("stones.png");
+	background-position: 0 0px;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
+.blue {
+	background: image-url("stones.png");
+	background-position: 0 -26px;
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+
