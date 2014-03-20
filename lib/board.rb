@@ -146,8 +146,8 @@ class Board
   #convert coord to a pair [row, col] from other formats. out of bounds
   #is allowed but other coordinates raise an error
   def self.to_coord(coord)
-    if coord.is_a?(String) && coord.length == 2
-      [coord[1].ord - 'a'.ord, coord[0].ord - 'a'.ord]
+    if coord.is_a?(String)
+      [coord[1..-1].to_i - 1, coord[0].ord - 'a'.ord]
     elsif coord.is_a?(Array) && coord.length == 2
       coord
     else
@@ -156,10 +156,10 @@ class Board
   end
   
   def self.to_move(coord)
-    if coord.is_a?(String) && coord.length == 2
+    if coord.is_a?(String) 
       coord
     elsif coord.is_a?(Array) && coord.length == 2
-      "#{(coord[1] + 'a'.ord).chr}#{(coord[1] + 'a'.ord).chr}"
+      "#{(coord[1] + 'a'.ord).chr}#{coord[0] + 1}"
     else
       raise MalformedCoordError, "Malformed Coordinate"
     end
@@ -207,21 +207,23 @@ class Board
       end
     end
     
-    def flip_letter(char)
-      new_index = (size - 1) - (char.ord - 'a'.ord)
-      raise MalformedCoordError unless (new_index >= 0) && (new_index < size)
-      new_ord = 'a'.ord + new_index
-      new_ord.chr
+    
+    def flip_coord(coord)
+      [size - coord[0] - 1, size - coord[1] - 1]
+    end
+    
+    def swap_coord(coord)
+      [coord[1], coord[0]]
     end
     
     def flip_move(move)
       return move if ["swap","resign"].include?(move)
-      "#{flip_letter(move[0])}#{flip_letter(move[1])}" 
+      self.class.to_move(flip_coord(self.class.to_coord(move)))
     end
     
     def swap_move(move)
       return move if ["swap","resign"].include?(move)
-      "#{move[1]}#{move[0]}"
+      self.class.to_move(swap_coord(self.class.to_coord(move)))
     end
     
     def flipswap_move(move)

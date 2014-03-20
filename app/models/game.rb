@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base  # 
+  require 'addressable/uri'
   validates :little_golem_id, uniqueness: true
   validates :red_name, presence: true
   validates :blue_name, presence: true
@@ -13,9 +14,11 @@ class Game < ActiveRecord::Base  #
   #identify players only by name, which is non-unique and can change. 
   def self.read_hsgf(hsgf_string, masters = [])
     game = self.new
+    move_list = hsgf_string.scan(/;[BW]\[(.+?)\]/).map(&:first).map do |letters|
+      letters_to_move(letters)
+    end
     game.red_name        = hsgf_string.match(/[B]\[(.+?)\]/)[1]
     game.blue_name       = hsgf_string.match(/[W]\[(.+?)\]/)[1]
-    move_list            = hsgf_string.scan(/;[BW]\[(.+?)\]/).map(&:first)
     game.size            = hsgf_string.match(/SZ\[(.+?)\]/)[1].to_i
     game.little_golem_id = hsgf_string.match(/game\s#?(.+?)\]/)[1].to_i
     result_code_match    = hsgf_string.match(/RE\[(.+?)\]/)
@@ -53,7 +56,7 @@ class Game < ActiveRecord::Base  #
     Board.new(size).tap do |board|
       moves.sort_by { |move| move.move_number }.each_with_index do |move, index|
         next unless move.move
-        break if index == move_number + 1
+        break if move_number && index == move_number + 1
            move.move
         board.handle_move(move.move)
       end
@@ -69,6 +72,25 @@ class Game < ActiveRecord::Base  #
         game.save_record! if game.result
       end
     end
+  end
+  
+  def self.letters_to_move(letters)
+   return letters if ["swap", "resign"].include?(letters)
+   Board.to_move(letters_to_coord(letters))
+  end
+  
+  def self.letters_to_coord(letters)
+      [letters[1].ord - 'a'.ord, letters[0].ord - 'a'.ord]
+  end
+  
+  def self.fetch_from_little_golem(id)
+    game_url = Addressable::URI.new(
+            :scheme => "http",
+            :host => "www.littlegolem.net",
+            :path => "servlet/sgf/#{id}/game.hsgf"
+          ).to_s   
+    game_hsgf = RestClient.get(game_url)
+    read_hsgf(game_hsgf)
   end
   
   

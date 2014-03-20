@@ -1,9 +1,10 @@
 HexApp::Application.routes.draw do
-  resources :games, :only => [:show, :index] do
+  resources :games, :only => [:index] do
     resources :moves, :only => [:show]
   end
   resources :advisors, :only => [:new, :create, :show]
   resources :comments, :only => [:create]
+  resources :games, :only => [:show], :defaults => { :format => 'json' }
   root :to => "games#index"
   
   # The priority is based upon order of creation: first created -> highest priority.

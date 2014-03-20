@@ -4,6 +4,8 @@ class GamesController < ApplicationController
   end
 
   def show
-    redirect_to game_start_url(params[:id])
+    @game = Game.fetch_from_little_golem(params[:id])
+    @moves = @game.moves.sort_by(&:move_number).map(&:move)[1..-1] || []
+    render "games/show"
   end
 end
