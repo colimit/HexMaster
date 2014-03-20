@@ -11,7 +11,7 @@
 				board: this.gameNav.board
 			});
 			this.gameMovesView = new HexApp.Views.GameMoves({
-				model: this.model
+				gameNav: this.gameNav
 			});
 		},
 		
@@ -26,10 +26,15 @@
 		render: function () {
 			var renderedContent = this.template();
 			this.$el.html(renderedContent);
-			this.$("#board").append(this.boardView.$el);
+			this.$("#board").append(this.boardView.render().$el);
 			this.boardView.delegateEvents();
-			this.gameNav.jump();
+			this.$("#moves").append(this.gameMovesView.render().$el)
+			this.gameMovesView.delegateEvents();
 			return this;
+		},
+		
+		reset: function () {
+			this.gameNav.jump();
 		}
 		
 	});

@@ -4,6 +4,7 @@
 	height: 336px;
 	position: relative;
 	background-repeat: no-repeat;
+	float: left;
 }
 
 .hex-space {
@@ -26,3 +27,28 @@
 	z-index: 2;
 }
 
+  
+.red-move {
+  background: #FDD;
+}
+
+.blue-move {
+  background: #DDF;
+}
+
+.game-moves {
+	display: inline-block;
+	margin: 0px;
+}
+
+.game-moves .selected {
+	background: #CFC;
+}
+
+.moves-board {
+	width: 200px;
+	height: 336px;
+	float: left;
+	border: gray 1px solid;
+	overflow-y: scroll;
+}

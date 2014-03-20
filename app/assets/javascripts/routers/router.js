@@ -26,9 +26,9 @@
 			//sync makes it difficult to initialize it asyncronously
 			game.fetch({
 				success: function (fetched){
-					console.log(fetched)
 					var view = new HexApp.Views.GameShow({ model: fetched });
 					that._swapview(view);
+					view.reset();
 				}
 			});
 		},

@@ -16,7 +16,7 @@
 		this.board = new HexApp.Board(this.size);
 		this.fragment = [];
 		this.baseMove = 0;
-		this.jump();
+		this.events = {};
 	};
 
 
@@ -27,12 +27,12 @@
 		jump: function (moveNum) {
 			var board = this.board
 			board.clear();
-			console.log("jumping")
 			this.resetFragment();
 			if (moveNum === 0) { return true;}
 			this.gameMoves.every(function (move, index) {
-				return board.handleMove(move) && ( !moveNum || index < moveNum);
+				return ( !moveNum || index < moveNum) && board.handleMove(move);
 			});
+			this.trigger("setMoveNum", moveNum || this.gameMoves.length);
 		},
 		
 		back: function () {
@@ -44,7 +44,26 @@
 	
 		resetFragment: function () {
 			this.fragment = [];
-		}
+		},
+		
+		//calls the named event's callback, with any additional arguments passed
+		//along
+		trigger: function(event) {
+			var that = this;
+			var args = [].slice.call(arguments, 1);
+			if (this.events[event]){
+				this.events[event].forEach(function(fn){
+					fn.apply(that, args);
+				});
+			}
+		
+		},
+	
+		//sets up an event
+		on: function(event, callback) {
+			this.events[event] = this.events[event] || [];
+			this.events[event].push(callback);
+		},
 		
 	};
 		

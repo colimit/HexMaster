@@ -1,34 +1,42 @@
 (function(){
-	/*global HexApp, Backbone, $ */
+	/*global JST, HexApp, Backbone */
 	"use strict";
 	HexApp.Views.Move = Backbone.View.extend({
 		tagName: "li",
 		
-		template: "games/move",
+		template: JST["games/move"],
 		
-		className: function () {
-			var color = (this.number % 2 === 0) ? "blue" : "red"
-			return color + " move " + "type"
-		},
+		className: "move",
 		
-		attributes: function () {
-			return {"data-number": this.number, "data-move": this.move}
-		},
 	
 		initialize: function (options){
-			debugger
 			this.move = options.move;
 			this.number = options.number;
-			this.type = options.type;
 		},
 		
 		render: function () {
-			renderedContent = this.template({
-				number: this.number,
-				move: this.move
-			})
-			this.$el.html()
+			var renderedContent = this.template({
+				move: (this.move === "resign" ? "res." : this.move)
+			});
+			this.updateAttributes();
+			this.$el.html(renderedContent);
 			return this;
+		},
+		
+		updateAttributes: function () {
+			this.$el.removeClass("red-move blue-move");
+			var colorClass = (this.number % 2 === 0) ? "blue-move" : "red-move";
+			this.$el.addClass(colorClass);
+			this.$el.attr("data-number", this.number);
+			this.$el.attr("data-move", this.move);
+		},
+		
+		select: function() {
+			this.$el.addClass("selected");
+		},
+		
+		unselect: function() {
+			this.$el.removeClass("selected");
 		}
 	
 	

@@ -43,9 +43,9 @@
 			this.changeTurn();
 		},
 		
-		changeTurn: function () {
-			this.turnColor = this.oppositeColor(this.turnColor);
-			this.trigger("changeTurn");
+		changeTurn: function (color) {
+			this.turnColor = (color || this.oppositeColor(this.turnColor));
+			this.trigger("changeTurn", this.turnColor);
 		},
 	
 		oppositeColor: function(color){
@@ -239,6 +239,7 @@
 					this.setHex([i,j], 0);
 				}
 			}
+			this.changeTurn("red");
 		}
 		
 		
