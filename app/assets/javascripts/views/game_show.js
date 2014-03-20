@@ -10,7 +10,9 @@
 			this.boardView = new HexApp.Views.BoardShow({ 
 				board: this.gameNav.board
 			});
-			this.gameMovesView = new HexApp.Views.GameMoves(model: this.model);
+			this.gameMovesView = new HexApp.Views.GameMoves({
+				model: this.model
+			});
 		},
 		
 		

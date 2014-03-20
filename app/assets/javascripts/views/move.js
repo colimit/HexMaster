@@ -11,9 +11,12 @@
 			return color + " move " + "type"
 		},
 		
-		attributes: {"data-number": this.number, "data-move": this.move },
+		attributes: function () {
+			return {"data-number": this.number, "data-move": this.move}
+		},
 	
 		initialize: function (options){
+			debugger
 			this.move = options.move;
 			this.number = options.number;
 			this.type = options.type;

@@ -26,7 +26,9 @@
 			for (var i = 0; i < this.size; i++){
 				this.spaces.push([]);
 				for (var j = 0; j < this.size; j++){
-					this.spaces[i][j] = new HexApp.Views.SpaceShow({ coord: [i,j] });
+					this.spaces[i][j] = new HexApp.Views.SpaceShow({ 
+						coord: [i,j] 
+					});
 				}
 			}
 		},

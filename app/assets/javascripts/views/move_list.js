@@ -12,7 +12,7 @@
 					number: index + 1 
 				}))
 			});
-		}
+		},
 	
 		tagName: "li",
 		
