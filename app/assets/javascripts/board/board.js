@@ -26,13 +26,13 @@
 		return file + (coord[0] + 1);
 	};
 
-
 	HexApp.Board.prototype = {
 		
 		adjacency: [[-1, 0], [0, -1], [-1, 1], [1, -1], [1, 0], [0, 1]],
 	
 		swap: function(){
 			var boardCopy = this.duplicate();
+			var turnColor = this.oppositeColor(this.turnColor);
 			this.clear();
 			for (var i = 0; i < this.size; i++){
 				for (var j = 0; j < this.size; j++){
@@ -40,7 +40,7 @@
 					this.setHex([i, j], color);
 				}
 			}
-			this.changeTurn();
+			this.changeTurn(turnColor);
 		},
 		
 		changeTurn: function (color) {
@@ -92,14 +92,7 @@
 			} else {
 				return false;
 			}
-		},
-		
-		handleMoves: function (moves) {
-			var that = this;
-			return moves.every(function (move) {
-				return that.handleMove(move);
-			});
-		},
+		},	
 	
 		valid: function(move){
 			if (move === "swap"){
@@ -107,7 +100,7 @@
 			} else if (move === "resign") {
 				return true;
 			} else {
-				return (!this.getHex(HexApp.stringToCoord(move)));
+				return move && (!this.getHex(HexApp.stringToCoord(move)));
 			}
 		},
 	
@@ -126,10 +119,8 @@
 		},
 	
 		normalMove: function(coord) {
-			var color = this.turnColor;
 			this.setHex(coord, this.turnColor);
-			this.turnColor = this.oppositeColor(color);
-			this.trigger("setTurn", this.turnColor);
+			this.changeTurn();
 		},
 	
 	
@@ -241,8 +232,6 @@
 			}
 			this.changeTurn("red");
 		}
-		
-		
 	
 	};
 })();

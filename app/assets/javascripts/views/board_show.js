@@ -4,7 +4,8 @@
 	HexApp.Views.BoardShow = Backbone.View.extend({
 	
 		initialize: function (options){
-			this.board = options.board;
+			this.gameNav = options.gameNav
+			this.board = options.gameNav.board;
 			this.size = this.board.size;
 			this.$el.addClass("hex-board" + this.size);
 			this.makeSpaces();
@@ -22,6 +23,16 @@
 					});
 				}
 			}
+		},
+		
+		
+		events: {
+			"click .hex-space": "handleSpaceClick"
+		},
+		
+		handleSpaceClick: function (event) {
+			var move = $(event.target).attr("id");
+			this.gameNav.push(move);
 		},
 	
 		affixSpaces: function(){

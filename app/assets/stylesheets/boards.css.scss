@@ -33,25 +33,18 @@
 }
 
   
-.red-move {
+.red-row .move-number-cell {
   background: #FDD;
 }
 
-.blue-move {
+.blue-row .move-number-cell {
   background: #DDF;
 }
 
-.game-moves {
-	display: inline-block;
-	margin: 0px;
-}
 
-.fragment-moves {
-	display: inline-block;
-}
 
-.game-moves .selected {
-	background: #CFC;
+.selected .game-move {
+	background: #FF9;
 }
 
 .moves-board {
