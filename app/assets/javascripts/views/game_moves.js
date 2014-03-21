@@ -13,7 +13,7 @@
 					number: index + 1 
 				}));
 			});
-			this.gameNav.on("setMoveNum", this.select.bind(this));
+			this.gameNav.on("setBaseMove", this.select.bind(this));
 		},
 	
 		tagName: "ol",

@@ -12,15 +12,6 @@
 			this.board.on("setHex", this.setSpace.bind(this));
 		},
 		
-		events: {
-			"click .hex-space": "handleSpaceClick"
-		},
-		
-		handleSpaceClick: function (event) {
-			var move = $(event.target).attr("id");
-			this.board.handleMove(move);
-		},
-	
 		makeSpaces: function(){
 			this.spaces = [];
 			for (var i = 0; i < this.size; i++){

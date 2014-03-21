@@ -25,25 +25,30 @@
 		//this jumps to moveNum in the game moves list, and empties the fragment
 		//if moveNum is not given, jumps to the end of the movelist
 		jump: function (moveNum) {
-			var board = this.board
+			var board = this.board;
 			board.clear();
 			this.resetFragment();
 			if (moveNum === 0) { return true;}
 			this.gameMoves.every(function (move, index) {
 				return ( !moveNum || index < moveNum) && board.handleMove(move);
 			});
-			this.trigger("setMoveNum", moveNum || this.gameMoves.length);
+			this.setBaseMove( moveNum || this.gameMoves.length);
 		},
 		
-		back: function () {
-			if (fragment.length > 0) {
-				
-			} else if (baseMove > 0) {
-			}
+		setBaseMove: function (baseMove) {
+			this.baseMove = baseMove;
+			this.trigger("setBaseMove", baseMove);
 		},
+		
 	
 		resetFragment: function () {
 			this.fragment = [];
+			this.trigger("clearFragment");
+		},
+		
+		setFragmentMove: function (number, move) {
+			this.fragment[number - 1] = move;
+			this.trigger("setFragmentMove", number, move);
 		},
 		
 		//calls the named event's callback, with any additional arguments passed
@@ -64,6 +69,31 @@
 			this.events[event] = this.events[event] || [];
 			this.events[event].push(callback);
 		},
+		
+		
+		//this adds a move to the navigation. If the fragme
+		push: function(move) {
+			if (this.board.handleMove(move)) {
+				if (this.fragment.length === 0 && 
+					this.gameMoves[this.moveNum] === move){
+						this.setBaseMove(this.baseMove + 1);
+				} else {
+					this.setFragmentMove(this.activeNumber() + 1, move);
+				}
+			}
+		},
+		
+		back: function() {
+			
+		},
+		
+		activeNumber: function () {
+			var moveNum;
+			this.fragment.forEach( function (move, i){ 
+				if (move) { moveNum = i + 1; }
+			});
+			return moveNum || this.baseMove;
+		}
 		
 	};
 		

@@ -7,6 +7,11 @@
 	float: left;
 }
 
+.ul {
+	margin: 0px;
+    list-style-type: none;
+}
+
 .hex-space {
 	width: 26px;
 	height: 26px;
@@ -39,6 +44,10 @@
 .game-moves {
 	display: inline-block;
 	margin: 0px;
+}
+
+.fragment-moves {
+	display: inline-block;
 }
 
 .game-moves .selected {

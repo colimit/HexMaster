@@ -37,6 +37,18 @@
 		
 		unselect: function() {
 			this.$el.removeClass("selected");
+		},
+		
+		blank: function () {
+			this.move = "";
+			this.$el.addClass("blank");
+			this.render();
+		},
+		
+		setMove: function (move) {
+			this.move = move;
+			this.$el.removeClass("blank");
+			this.render();
 		}
 	
 	
