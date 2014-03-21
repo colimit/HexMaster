@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require underscore
 //= require backbone
 //= require hex_app
+//= require views/composite_view
 //= require_tree ./board
 //= require_tree ../templates
 //= require_tree ./models

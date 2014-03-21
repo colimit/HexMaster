@@ -10,8 +10,8 @@
 			this.setMove(options.move);
 			this.number = options.number;
 			var colorClass = (this.number % 2 === 0) ? "blue-move" : "red-move";
-			this.$el.addClass(colorClass);
-			this.$el.attr("data-number", this.number);
+			this.$el.addClass(colorClass);			// 
+			// this.$el.attr("data-number", this.number);
 		},
 		
 		render: function () {

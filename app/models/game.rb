@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base  #
   validates :red_name, presence: true
   validates :blue_name, presence: true
   has_many :moves, inverse_of: :game
-  has_many :comments, through: :moves
+  has_many :comments, inverse_of: :game
   
   #This creates a game with moves from
   #littlegolem.com's HSGF string. Note that this 

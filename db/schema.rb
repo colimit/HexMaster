@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313235557) do
+ActiveRecord::Schema.define(version: 20140321230131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
-    t.integer  "move_id"
+    t.integer  "game_id",    null: false
     t.text     "body"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["move_id"], name: "index_comments_on_move_id", using: :btree
+  add_index "comments", ["game_id"], name: "index_comments_on_game_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "games", force: true do |t|
     t.string   "red_name"
@@ -51,5 +53,14 @@ ActiveRecord::Schema.define(version: 20140313235557) do
 
   add_index "moves", ["game_id"], name: "index_moves_on_game_id", using: :btree
   add_index "moves", ["position_digest"], name: "index_moves_on_position_digest", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string "username",          null: false
+    t.string "email"
+    t.string "password_digest"
+    t.string "little_golem_name"
+  end
+
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end

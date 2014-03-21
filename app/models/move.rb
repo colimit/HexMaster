@@ -3,7 +3,6 @@ class Move < ActiveRecord::Base  #
   # validates :position_digest, presence: true
   # 
   belongs_to :game, inverse_of: :moves
-  has_many :comments
   
   
   #this is to be used in context where game is pre-fetched so does

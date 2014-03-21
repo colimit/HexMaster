@@ -3,8 +3,6 @@
 	"use strict";
 	HexApp.Views.SpaceShow = Backbone.View.extend({
 
-		template: JST["spaces/show"],
-
 		initialize: function (options){
 			this.coord = options.coord;
 			this.$el.attr("style", this.style());
@@ -33,8 +31,6 @@
 		},
 
 		render: function () {
-			var renderedContent = this.template({ piece: null });
-			this.$el.html(renderedContent);
 			return this;
 		}
 
