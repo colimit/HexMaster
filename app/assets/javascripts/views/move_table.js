@@ -1,4 +1,4 @@
-/*global HexApp, Backbone, $*/
+/*global HexApp, Backbone, JST $*/
 (function(){
 	"use strict";
 	HexApp.Views.MoveTable = Backbone.View.extend({

@@ -1,4 +1,4 @@
-/*global HexApp, Backbone, JST*/
+/*global HexApp, Backbone */
 (function(){
 	"use strict";
 	HexApp.Views.SpaceShow = Backbone.View.extend({

@@ -1,5 +1,5 @@
-/*global HexApp, Backbone, JST*/
 (function(){
+	/*global HexApp, Backbone, JST*/
 	"use strict";
 	HexApp.Views.GameShow = Backbone.CompositeView.extend({
 		
@@ -11,10 +11,10 @@
 			var movesView = new HexApp.Views.MoveTable({ gameNav: gameNav });
 			var commentsView = new HexApp.Views.Comments({ 
 				collection: this.model.comments()
-			})
+			});
 			this.addSubview("#game-display", boardView);
 			this.addSubview("#game-display", movesView);
-			this.addSubview("#comments", commentsView)
+			this.addSubview("#comments", commentsView);
 		},
 
 		

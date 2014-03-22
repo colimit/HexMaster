@@ -58,7 +58,7 @@
 		unselect: function() {
 			this.$el.removeClass("selected");
 			this.selected = false;
-		},
+		}
 	
 	
 	});

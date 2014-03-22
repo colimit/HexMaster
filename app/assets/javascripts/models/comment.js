@@ -1,3 +1,7 @@
-HexApp.Models.Comment = Backbone.Model.extend({
+(function () {
+	"use strict";
+	/*global HexApp, Backbone */
+	HexApp.Models.Comment = Backbone.Model.extend({
 	
-})
+	});
+})();

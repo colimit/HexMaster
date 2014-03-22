@@ -19,7 +19,7 @@
 		},
 		
 		gameShow: function (id) {
-			var that = this
+			var that = this;
 			var game = new HexApp.Models.Game();
 			game.set("little_golem_id", id);
 			//the fact that the size of the game is only known upon

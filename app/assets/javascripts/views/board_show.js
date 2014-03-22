@@ -4,7 +4,7 @@
 	HexApp.Views.BoardShow = Backbone.View.extend({
 	
 		initialize: function (options){
-			this.gameNav = options.gameNav
+			this.gameNav = options.gameNav;
 			this.board = options.gameNav.board;
 			this.size = this.board.size;
 			this.$el.addClass("hex-board" + this.size);
