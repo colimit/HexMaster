@@ -47,10 +47,64 @@
 	background: #FF9;
 }
 
-.moves-board {
-	width: 200px;
+.moves-display {
 	height: 336px;
+	width: 161px;
+	margin: 0px;
 	float: left;
-	border: gray 1px solid;
+}
+
+.moves-table-bottom {
+
+    table-layout:fixed;
+	height: 300px;
+	width: 180px;
+	display: block;
+}
+
+.moves-table-body  {
+    table-layout:fixed;
 	overflow-y: scroll;
+	height: 300px;
+	width: 180px;
+	display: block;
+}
+
+.move-number-cell {
+	width: 45px;
+}
+
+.game-move,.branch-move {
+	width: 60px;
+}
+
+.game-move,.branch-move {
+	width: 60px;
+}
+
+.moves-table-top {
+    table-layout:fixed;
+	width: 201px;
+	margin: 0;
+}
+.moves-table-head {
+    table-layout:fixed;
+	width: 200px;
+	display: block;
+	margin: 0;
+}
+
+
+.game-display {
+	display: block;
+	height: 336px;
+}
+
+#comments {
+	display: block;
+	margin: 10px;
+}
+
+.move-number-cell {
+    text-align: center;
 }

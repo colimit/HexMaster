@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require bootstrap
 //= require hex_app
 //= require views/composite_view
 //= require_tree ./board
