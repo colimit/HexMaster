@@ -1,110 +1,111 @@
 .hex-board13 {
-	background-image: image-url("hexboard13.png");
-	width: 560px;
-	height: 336px;
-	position: relative;
-	background-repeat: no-repeat;
-	float: left;
-}
+  background-image: url(/assets/hexboard13.png);
+  width: 560px;
+  height: 336px;
+  position: relative;
+  background-repeat: no-repeat;
+  float: left; }
 
 .ul {
-	margin: 0px;
-    list-style-type: none;
-}
+  margin: 0px;
+  list-style-type: none; }
 
 .hex-space {
-	width: 26px;
-	height: 26px;
-	position: absolute;
-}
+  width: 26px;
+  height: 26px;
+  position: absolute; }
 
-.red {
-	background: image-url("stones.png");
-	background-position: 0 0px;
-	background-repeat: no-repeat;
-	z-index: 2;
-}
+.hex-board13 .red {
+  background: url(/assets/stones.png);
+  background-position: 0 0px;
+  background-repeat: no-repeat;
+  z-index: 2; }
 
-.blue {
-	background: image-url("stones.png");
-	background-position: 0 -26px;
-	background-repeat: no-repeat;
-	z-index: 2;
-}
+.hex-board13 .blue {
+  background: url(/assets/stones.png);
+  background-position: 0 -26px;
+  background-repeat: no-repeat;
+  z-index: 2; }
 
-  
 .red-row .move-number-cell {
-  background: #FDD;
-}
+  background: #FDD; }
 
 .blue-row .move-number-cell {
-  background: #DDF;
-}
-
-
+  background: #DDF; }
 
 .selected .game-move {
-	background: #FF9;
-}
+  background: #FF9; }
 
 .moves-display {
-	height: 336px;
-	width: 161px;
-	margin: 0px;
-	float: left;
-}
+  height: 336px;
+  width: 161px;
+  margin: 0px;
+  float: left; }
 
 .moves-table-bottom {
+  table-layout: fixed;
+  height: 300px;
+  width: 180px;
+  display: block; }
 
-    table-layout:fixed;
-	height: 300px;
-	width: 180px;
-	display: block;
-}
-
-.moves-table-body  {
-    table-layout:fixed;
-	overflow-y: scroll;
-	height: 300px;
-	width: 180px;
-	display: block;
-}
+.moves-table-body {
+  table-layout: fixed;
+  overflow-y: scroll;
+  height: 300px;
+  width: 180px;
+  display: block; }
 
 .move-number-cell {
-	width: 45px;
-}
+  width: 45px; }
 
-.game-move,.branch-move {
-	width: 60px;
-}
+.game-move, .branch-move {
+  width: 60px; }
 
-.game-move,.branch-move {
-	width: 60px;
-}
+.game-move, .branch-move {
+  width: 60px; }
 
 .moves-table-top {
-    table-layout:fixed;
-	width: 201px;
-	margin: 0;
-}
-.moves-table-head {
-    table-layout:fixed;
-	width: 200px;
-	display: block;
-	margin: 0;
-}
+  table-layout: fixed;
+  width: 201px;
+  margin: 0; }
 
+.moves-table-head {
+  table-layout: fixed;
+  width: 200px;
+  display: block;
+  margin: 0; }
 
 .game-display {
-	display: block;
-	height: 336px;
-}
+  display: block;
+  height: 336px; }
 
 #comments {
-	display: block;
-	margin: 10px;
-}
+  display: block;
+  margin: 10px; }
 
 .move-number-cell {
-    text-align: center;
-}
+  text-align: center; }
+
+.comment-move-list {
+  display: inline;
+  padding: 0px; }
+
+.comment-move {
+  display: inline;
+  padding-left: 2px;
+  padding-top: 1px;
+  padding-right: 2px; }
+
+.comment-move-list .red-move {
+  background-color: #FDD; }
+
+.comment-move-list .blue-move {
+  background-color: #DDF; }
+
+.comment .comment-pipe {
+  font-weight: bolder;
+  background-color: #484; 
+  color: #484;
+  padding: 0px;
+  margin: 0px;
+} 
