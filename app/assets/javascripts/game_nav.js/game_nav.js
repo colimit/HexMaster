@@ -33,6 +33,7 @@
 				return ( !moveNum || index < moveNum) && board.handleMove(move);
 			});
 			this.setBaseMove( moveNum || this.gameMoves.length);
+			this.trigger("setCurrentMove", moveNum)
 		},
 		
 		setBaseMove: function (baseMove) {
@@ -56,7 +57,8 @@
 			if (this.branch[moveNum - 1]){
 				this.branch = this.branch.slice(0, moveNum);
 				this.reset();
-			}		
+				return true;	
+			}
 		},
 		
 	
@@ -65,9 +67,10 @@
 			this.trigger("clearBranch");
 		},
 		
-		setFragmentMove: function (number, move) {
+		setBranchMove: function (number, move) {
 			this.branch[number - 1] = move;
 			this.trigger("setBranchMove", number, move);
+			this.trigger("setCurrentMove", number)
 		},
 		
 		//calls the named event's callback, with any additional arguments passed
@@ -90,7 +93,7 @@
 		},
 		
 		
-		//this adds a move to the navigation. If the fragme
+		//this adds a move to the navigation.
 		push: function(move) {
 			if (this.gameMoves[this.baseMove - 1] === "resign") {
 				this.jump(this.baseMove - 1);
@@ -100,7 +103,7 @@
 					this.gameMoves[this.moveNum] === move){
 						this.setBaseMove(this.baseMove + 1);
 				} else {
-					this.setFragmentMove(this.activeNumber() + 1, move);
+					this.setBranchMove(this.activeNumber() + 1, move);
 				}
 			}
 		},

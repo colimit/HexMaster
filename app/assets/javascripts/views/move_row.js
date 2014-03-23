@@ -5,7 +5,7 @@
 		
 		tagName: "tr",
 		
-		className: "move",
+		className: "move-row",
 	
 		initialize: function (options){
 			this.number = options.number;
@@ -50,6 +50,17 @@
 			return !(this.gameMove || this.branchMove); 
 		},
 
+		base: function() {
+			this.$el.addClass("based");
+			this.based = true;
+		},
+		
+		unbase: function() {
+			this.$el.removeClass("based");
+			this.based = false;
+		},
+		
+
 		select: function() {
 			this.$el.addClass("selected");
 			this.selected = true;
@@ -59,6 +70,7 @@
 			this.$el.removeClass("selected");
 			this.selected = false;
 		}
+	
 	
 	
 	});

@@ -15,8 +15,9 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
-//= require hex_app
 //= require xregexp
+//= require interpreter
+//= require hex_app
 //= require views/composite_view
 //= require_tree ./board
 //= require_tree ../templates

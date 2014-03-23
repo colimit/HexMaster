@@ -1,10 +1,13 @@
+html {
+  background-color: #F3F3F3; }
+
 .hex-board13 {
   background-image: url(/assets/hexboard13.png);
   width: 560px;
   height: 336px;
-  position: relative;
-  background-repeat: no-repeat;
-  float: left; }
+  left: 0px;
+  position: absolute;
+  background-repeat: no-repeat; }
 
 .ul {
   margin: 0px;
@@ -33,58 +36,69 @@
 .blue-row .move-number-cell {
   background: #DDF; }
 
+.based .game-move {
+  background: #FFFFB0; }
+
 .selected .game-move {
-  background: #FF9; }
+  background: #E8E8E8; }
+
+.selected .branch-move {
+  background: #e8e8e8; }
+
+.based.selected .game-move {
+  background: #f0f099; }
+
+.blue-row.selected .move-number-cell {
+  background: #CCD5F7; }
+
+.red-row.selected .move-number-cell {
+  background: #F7D0D0; }
 
 .moves-display {
   height: 336px;
   width: 161px;
   margin: 0px;
-  float: left; }
-
-.moves-table-bottom {
-  table-layout: fixed;
-  height: 300px;
-  width: 180px;
-  display: block; }
+  top: 0px;
+  position: absolute;
+  left: 570px; }
 
 .moves-table-body {
-  table-layout: fixed;
   overflow-y: scroll;
   height: 300px;
   width: 180px;
   display: block; }
+  
+
 
 .move-number-cell {
   width: 45px; }
 
-.game-move, .branch-move {
-  width: 60px; }
 
-.game-move, .branch-move {
-  width: 60px; }
+.move-row .move {
+  width: 60px; 
+  padding: 2px;
+  }
 
 .moves-table-top {
-  table-layout: fixed;
-  width: 201px;
-  margin: 0; }
-
-.moves-table-head {
-  table-layout: fixed;
-  width: 200px;
-  display: block;
-  margin: 0; }
+  margin: 0; 
+  }
 
 .game-display {
-  display: block;
-  height: 336px; }
+  display: inline;
+  height: 336px;
+  position: relative; }
 
 #comments {
   display: block;
-  margin: 10px; }
+  margin: 0px;
+  position: absolute;
+  top: 350px;
+  margin: 10px;
+  width: 730px; }
 
-.move-number-cell {
-  text-align: center; }
+.move-row .move-number-cell {
+  text-align: center;
+  padding: 2px;}
 
 .comment-move-list {
   display: inline;
@@ -102,10 +116,19 @@
 .comment-move-list .blue-move {
   background-color: #DDF; }
 
+.comment {
+  background-color: #FFF;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px}
+
+.comment .media-heading {
+  color: #434; }
+
 .comment .comment-pipe {
   font-weight: bolder;
-  background-color: #484; 
+  background-color: #484;
   color: #484;
   padding: 0px;
-  margin: 0px;
-} 
+  margin: 0px; }

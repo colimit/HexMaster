@@ -11,7 +11,8 @@
 			this.makeRowViews();
 			this.gameNav.on("setBranchMove", this.setBranchMove.bind(this));
 			this.gameNav.on("clearBranch", this.clear.bind(this)); 
-			this.gameNav.on("setBaseMove", this.select.bind(this));
+			this.gameNav.on("setBaseMove", this.base.bind(this));
+			this.gameNav.on("setCurrentMove", this.setCurrentMove.bind(this))
 		},
 		
 		makeRowViews: function () {
@@ -82,11 +83,21 @@
 			}
 		},
 		
-		select: function(moveNum){
+		base: function(moveNum){
 			this.rowViews.forEach(function(rowView, index){
-				if (rowView.selected && moveNum != index + 1){
+				if (moveNum != index + 1){
+					rowView.unbase();
+				} else if (moveNum === index + 1){
+					rowView.base();	
+				}
+			});
+		},
+		
+		setCurrentMove: function(moveNum){
+			this.rowViews.forEach(function(rowView, index){
+				if (moveNum != index + 1){
 					rowView.unselect();
-				} else if (!rowView.selected && moveNum === index + 1){
+				} else if (moveNum === index + 1){
 					rowView.select();	
 				}
 			});

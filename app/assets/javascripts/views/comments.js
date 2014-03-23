@@ -5,7 +5,7 @@
 	
 		tagName: "ul",
 	
-		className: "comments-list media-list",
+		className: "comments-list media-list list-group",
 	
 		template: JST["comments/index"],
 	
