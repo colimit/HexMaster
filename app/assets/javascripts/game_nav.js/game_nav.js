@@ -25,15 +25,16 @@
 		//this jumps to moveNum in the game moves list, and empties the branch
 		//if moveNum is not given, jumps to the end of the movelist
 		jump: function (moveNum) {
+			var number = parseInt(moveNum, 10);
 			var board = this.board;
 			board.clear();
 			this.clearBranch();
-			if (moveNum === 0) { return true;}
+			if (number === 0) { return true;}
 			this.gameMoves.every(function (move, index) {
-				return ( !moveNum || index < moveNum) && board.handleMove(move);
+				return ( !number || index < number) && board.handleMove(move);
 			});
-			this.setBaseMove( moveNum || this.gameMoves.length);
-			this.trigger("setCurrentMove", moveNum)
+			this.setBaseMove(number || this.gameMoves.length);
+			this.trigger("setCurrentMove", number);
 		},
 		
 		setBaseMove: function (baseMove) {
@@ -61,6 +62,17 @@
 			}
 		},
 		
+		//prepares for a new branch which will start at the startMove number,
+		//which may be given as a string
+		prepareNewBranch: function (startMove){
+			var jumpNumber = parseInt(startMove, 10) - 1;
+			this.goTo(jumpNumber);
+		},
+		
+		goTo: function (moveNum) {
+			return this.branchJump(moveNum) || this.jump(moveNum);
+		},
+		
 	
 		clearBranch: function () {
 			this.branch = [];
@@ -70,7 +82,7 @@
 		setBranchMove: function (number, move) {
 			this.branch[number - 1] = move;
 			this.trigger("setBranchMove", number, move);
-			this.trigger("setCurrentMove", number)
+			this.trigger("setCurrentMove", number);
 		},
 		
 		//calls the named event's callback, with any additional arguments passed

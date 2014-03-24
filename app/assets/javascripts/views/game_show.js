@@ -10,7 +10,8 @@
 			var boardView = new HexApp.Views.BoardShow({ gameNav: gameNav });
 			var movesView = new HexApp.Views.MoveTable({ gameNav: gameNav });
 			var commentsView = new HexApp.Views.Comments({ 
-				collection: this.model.comments()
+				collection: this.model.comments(),
+				gameNav: gameNav
 			});
 			this.addSubview("#game-display", boardView);
 			this.addSubview("#game-display", movesView);

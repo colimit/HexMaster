@@ -12,8 +12,14 @@
 			this.gameNav.on("setBranchMove", this.setBranchMove.bind(this));
 			this.gameNav.on("clearBranch", this.clear.bind(this)); 
 			this.gameNav.on("setBaseMove", this.base.bind(this));
-			this.gameNav.on("setCurrentMove", this.setCurrentMove.bind(this))
+			this.gameNav.on("setCurrentMove", this.setCurrentMove.bind(this));
+			this.scrollPosition = 0;
+			this.currentMoveNum = 0;
 		},
+		
+		refreshScrollPosition: function(){
+			this.scrollPosition = this.$(".moves-table-body").scrollTop();
+		}, 
 		
 		makeRowViews: function () {
 			var that = this;
@@ -37,12 +43,14 @@
 		},
 		
 		handleGameMoveClick: function (event) {
+			this.refreshScrollPosition();
 			var number = parseInt($(event.target).parent().data("number"), 10);
 			this.gameNav.jump(number);
 		},
 		
 		
 		handleBranchMoveClick: function (event) {
+			this.refreshScrollPosition();
 			var number = parseInt($(event.target).parent().data("number"), 10);
 			this.gameNav.branchJump(number);
 		},
@@ -60,6 +68,7 @@
 		},
 		
 		clear: function() {
+			this.refreshScrollPosition();
 			this.rowViews = this.rowViews.slice(0, this.gameLength);
 			for (var number = 1; number <= this.gameLength; number++){
 				this.rowViews[number - 1].setBranchMove("");
@@ -68,6 +77,7 @@
 		},
 		
 		setBranchMove: function(number, move) {
+			this.refreshScrollPosition();
 			if (this.rowViews[number - 1]){
 				this.rowViews[number - 1].setBranchMove(move);
 			} else {
@@ -95,13 +105,38 @@
 		
 		setCurrentMove: function(moveNum){
 			this.rowViews.forEach(function(rowView, index){
-				if (moveNum != index + 1){
+				var selected = rowView.$el.hasClass("selected");
+				if (moveNum != index + 1 && selected) {
 					rowView.unselect();
-				} else if (moveNum === index + 1){
-					rowView.select();	
+				} else if (moveNum === index + 1 && !selected){
+					rowView.select();
 				}
 			});
+			this.currentMoveNum = moveNum;
+			this.fixScrollPosition();
+		},
+		
+		fixScrollPosition: function(){
+			var tableBody = this.$(".moves-table-body");
+			var oldPosition = this.scrollPosition;
+			var moveNum = this.currentMoveNum;
+			if (oldPosition > this.scrollMin(moveNum)){
+				tableBody.scrollTop(this.scrollMin(moveNum) - 100);
+			} else if (oldPosition < this.scrollMax(moveNum)){
+				tableBody.scrollTop(this.scrollMax(moveNum)+ 100) ;
+			} else {
+				tableBody.scrollTop(oldPosition);
+			}
+		},
+		
+		scrollMin: function(moveNum){
+			return 24 * (moveNum - 1);
+		},
+		
+		scrollMax: function(moveNum){
+			return 12 + 24 * ( moveNum - 13);
 		}
 		
 	});
 })();
+

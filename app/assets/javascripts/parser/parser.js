@@ -1,6 +1,6 @@
 (function(){
 	"use strict";
-	/*global _, XRegExp, Gerbe, $ */
+	/*global Gerbe, HexApp, $ */
 
 	HexApp.HexTokenizer = Gerbe.Parser.extend({
 	
@@ -25,12 +25,14 @@
 	
 			var textMatcher = /([\s\S]+?)(?=\||\d+\.\s*[a-t]1?\d\s?|$)/;
 		
+			
 			return this.loop(this.or( 
-				this.tokenGetter(pipeMatcher, pipeProcessor),
-				this.tokenGetter(moveMatcher, moveProcessor),
-				this.tokenGetter(textMatcher, textProcessor)
+				this.map(this.tokenGetter(pipeMatcher), pipeProcessor),
+				this.map(this.tokenGetter(moveMatcher), moveProcessor),
+				this.map(this.tokenGetter(textMatcher), textProcessor)
 			));
 		
+			
 		}
 	});
 
@@ -49,24 +51,32 @@
 		tokenizer: new HexApp.HexTokenizer(),
 		
 		pipeSpan: function(){
-			return $("<span>").addClass("comment-pipe").html(" | ");
+			var element = $("<span>").addClass("comment-pipe");
+			element.html(" |&nbsp;");
+			return element;
+		},
+		
+		pipeToken: function(){
+			var element = $("<div>").addClass("token hidden");
+			element.attr("data-type", "jump").attr("data-value", 0);
+			return element;
 		},
 		
 		moveLi: function(move, number){
-			var element = $("<li>").addClass("comment-move");
-			element.attr("data-move", move);
-			element.html("" + number + "." + move);
-			if (number % 2 === 0) {
-				element.addClass("blue-move");
-			} else {
-				element.addClass("red-move");
-			}
+			var element = $("<li>").addClass("comment-move token");
+			element.attr("data-type", "push").attr("data-value", move);
+			element.html("" + number + "." + move + " ");
+			if (number % 2 === 0) { element.addClass("blue-move"); } 
+			else { element.addClass("red-move"); }
+			element.prepend(this.pipe);
+			this.pipe = null;
 			return element;
 		},
 		
 		moveUl: function(number){
-			var element = $("<ul>").addClass("comment-move-list");
-			element.attr("data-number", number);
+			var element = $("<ul>").addClass("comment-move-list token");
+			element.attr("data-type", "prepareNewBranch")
+			element.attr("data-value", number);
 			return element;
 		},
 
@@ -74,8 +84,9 @@
 	
 			pipe: function() {
 				if (this.movelist) this.container.append(this.movelist());
-				this.container.append(this.pipeSpan());
+				this.container.append(this.pipeToken());
 				this.movelist = null;
+				this.pipe = this.pipeSpan();
 			},
 	
 			move: function(attributes) {
@@ -88,7 +99,7 @@
 			text: function(attributes) {
 				if (this.movelist) this.container.append(this.movelist);
 				if (this.container.html() && attributes.text[0] != ".") {
-					this.container.append(" ");
+					this.container.append("&nbsp;");
 				}
 				this.container.append(attributes.text);
 				this.movelist = null;
