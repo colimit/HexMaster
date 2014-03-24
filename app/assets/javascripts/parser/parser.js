@@ -26,11 +26,13 @@
 			var textMatcher = /([\s\S]+?)(?=\||\d+\.\s*[a-t]1?\d\s?|$)/;
 		
 			
-			return this.loop(this.or( 
-				this.map(this.tokenGetter(pipeMatcher), pipeProcessor),
-				this.map(this.tokenGetter(moveMatcher), moveProcessor),
-				this.map(this.tokenGetter(textMatcher), textProcessor)
-			));
+			return this.loop(
+				this.or( 
+					this.map(this.tokenGetter(pipeMatcher), pipeProcessor),
+					this.map(this.tokenGetter(moveMatcher), moveProcessor),
+					this.map(this.tokenGetter(textMatcher), textProcessor)
+				)
+			);
 		
 			
 		}
@@ -38,7 +40,7 @@
 
 
 	HexApp.CommentInterpreter = Gerbe.Interpreter.extend({
-		startState: function(){
+		start: function(){
 			this.container = $("<div>");
 			this.movelist = null;
 		},

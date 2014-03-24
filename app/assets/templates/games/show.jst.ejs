@@ -1,2 +1,12 @@
+<h4>
+	LG #<%= game.escape("little_golem_id")%>:
+	<span class="red-name"><%= game.escape("red_name")%></span> vs.
+    <span class="blue-name"><%= game.escape("blue_name")%></span>
+	<% if (game.escape("result")==="red") { %>
+		 1-0
+	<% } else if (game.escape("result")==="blue") { %>
+		 0-1
+	<% } %>	
+</h4>
 <div id=game-display class=game-display></div>
 <div id=comments class=comments></div>

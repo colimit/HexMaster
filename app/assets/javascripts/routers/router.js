@@ -23,7 +23,8 @@
 			var game = new HexApp.Models.Game();
 			game.set("little_golem_id", id);
 			//the fact that the size of the game is only known upon
-			//sync makes it difficult to initialize it asyncronously
+			//sync makes it difficult to initialize before the game is fetched.
+			//For instance, the layout should depend on the size.
 			game.fetch({
 				success: function (fetched){
 					var view = new HexApp.Views.GameShow({ model: fetched });

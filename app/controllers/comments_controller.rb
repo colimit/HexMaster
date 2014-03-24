@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
   
   def create
-    @comment = Comment.new(comments_params)
-    @move = Move.find(params[:comment][:move_id])
-    unless @comment.save
-      flash.now[:errors]
-    end
-    redirect_to move_url(@move)
+    @game = Game.find(params[:comment][:game_id])
+    @comment = @game.comments.build(comments_params)
+    #@comment.user = current_user
+    flash.now[:errors] unless @comment.save
+    render "comments/show"
   end
 
-
   def comments_params
-    params.require(:comment).permit(:move_id,:body)
+    params.require(:comment).permit(:body)
   end
 end

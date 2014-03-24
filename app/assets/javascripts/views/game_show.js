@@ -11,6 +11,7 @@
 			var movesView = new HexApp.Views.MoveTable({ gameNav: gameNav });
 			var commentsView = new HexApp.Views.Comments({ 
 				collection: this.model.comments(),
+				model: this.model,
 				gameNav: gameNav
 			});
 			this.addSubview("#game-display", boardView);
@@ -20,7 +21,7 @@
 
 		
 		render: function () {
-			var renderedContent = this.template();
+			var renderedContent = this.template({ game: this.model });
 			this.$el.html(renderedContent);
 			this.renderSubviews();
 			return this;

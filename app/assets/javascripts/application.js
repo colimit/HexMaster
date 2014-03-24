@@ -18,6 +18,7 @@
 //= require xregexp
 //= require interpreter
 //= require hex_app
+//= require serializeJSON
 //= require views/composite_view
 //= require_tree ./board
 //= require_tree ../templates

@@ -5,20 +5,29 @@
 	
 		tagName: "ul",
 	
-		className: "comments-list media-list list-group",
+		className: "comments-display",
 	
 		template: JST["comments/index"],
 		
-		events: {"click .comment-move": "handleMoveClick"},
+		events: { 
+			"click .comment-move": "handleMoveClick",
+			"submit .new-comment": "handleCommentSubmission"
+		},
 	
 		initialize: function (options) {
 			this.gameNav = options.gameNav;
 			var that = this;
+			//comments views added once on initialize since
+			//this view is made only after fetch
 			this.collection.each(function (comment){
-				that.addSubview("", new HexApp.Views.Comment({
+				that.addSubview(".comments-list", new HexApp.Views.Comment({
 					model: comment
 				}));
 			});
+			this.addSubview(".new-comment", new HexApp.Views.NewComment({
+				model: this.model
+			}))
+			this.listenTo(this.collection, "add", this.addComment)
 		},
 
 		render: function () {
@@ -38,6 +47,19 @@
 				gameNav[data.type](data.value);
 				if ($(token).is(move)) {return false};
 			});
+		},
+		
+		handleCommentSubmission: function (event) {
+			event.preventDefault();
+			var form = $(event.target);
+			debugger
+			var comment = this.collection.add(form.serializeJSON().comment);
+			comment.save();
+		},
+		
+		addComment: function (comment) {
+			var subview = new HexApp.Views.Comment({ model: comment });
+			this.addSubview(".comments-list", subview);
 		}
 		
 	
