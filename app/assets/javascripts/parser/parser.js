@@ -51,14 +51,8 @@
 		tokenizer: new HexApp.HexTokenizer(),
 		
 		pipeSpan: function(){
-			var element = $("<span>").addClass("comment-pipe");
-			element.html(" |&nbsp;");
-			return element;
-		},
-		
-		pipeToken: function(){
-			var element = $("<div>").addClass("token hidden");
-			element.attr("data-type", "jump").attr("data-value", 0);
+			var element = $("<span>").addClass("comment-pipe token");
+			element.html(" |&nbsp;").attr("data-type", "jump").attr("data-value", 0);
 			return element;
 		},
 		
@@ -68,8 +62,6 @@
 			element.html("" + number + "." + move + " ");
 			if (number % 2 === 0) { element.addClass("blue-move"); } 
 			else { element.addClass("red-move"); }
-			element.prepend(this.pipe);
-			this.pipe = null;
 			return element;
 		},
 		
@@ -84,9 +76,8 @@
 	
 			pipe: function() {
 				if (this.movelist) this.container.append(this.movelist());
-				this.container.append(this.pipeToken());
+				this.container.append(this.pipeSpan());
 				this.movelist = null;
-				this.pipe = this.pipeSpan();
 			},
 	
 			move: function(attributes) {
