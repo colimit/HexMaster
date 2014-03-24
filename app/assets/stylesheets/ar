@@ -58,16 +58,16 @@ html {
   background: #F7D0D0; }
 
 .moves-display {
-  height: 351px;
+  height: 336px;
   width: 161px;
   margin: 0px;
-  top: -15px;
+  top: 0px;
   position: absolute;
   left: 570px; }
 
 .moves-table-body {
   overflow-y: scroll;
-  height: 312px;
+  height: 300px;
   width: 180px;
   display: block; }
 
@@ -90,7 +90,7 @@ html {
   display: block;
   margin: 0px;
   position: absolute;
-  top: 410px;
+  top: 380px;
   margin: 10px;
   width: 730px; }
 
@@ -122,8 +122,7 @@ html {
   padding-bottom: 2px; }
 
 .comment .media-heading {
-  color: #434;
-  font-size: 15px; }
+  color: #434; }
 
 .comment .comment-pipe {
   font-weight: bolder;
@@ -140,3 +139,7 @@ html {
 
 .game-header {
   margin: 10px; }
+  
+h4 .media-header {
+  font-size: 14px;
+}

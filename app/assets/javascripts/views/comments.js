@@ -3,8 +3,6 @@
 	/*global HexApp, Backbone, JST, $ */
 	HexApp.Views.Comments = Backbone.CompositeView.extend({
 	
-		tagName: "ul",
-	
 		className: "comments-display",
 	
 		template: JST["comments/index"],
