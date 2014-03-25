@@ -20,6 +20,7 @@
 //= require hex_app
 //= require serializeJSON
 //= require views/composite_view
+//= require views/base_modal
 //= require_tree ./board
 //= require_tree ../templates
 //= require_tree ./models

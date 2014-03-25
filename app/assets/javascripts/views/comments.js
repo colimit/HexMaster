@@ -50,7 +50,6 @@
 		handleCommentSubmission: function (event) {
 			event.preventDefault();
 			var form = $(event.target);
-			debugger
 			var comment = this.collection.add(form.serializeJSON().comment);
 			comment.save();
 		},

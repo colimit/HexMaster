@@ -29,6 +29,12 @@
 		
 		reset: function () {
 			this.gameNav.jump();
+		},
+		
+		events: { "click .sign-in": "launchSignIn"},
+		
+		launchSignIn: function(){
+			new HexApp.Views.NewSession()
 		}
 		
 	});

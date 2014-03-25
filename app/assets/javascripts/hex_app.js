@@ -5,6 +5,7 @@ window.HexApp = {
   Routers: {},
   initialize: function() {
 	var router = new HexApp.Routers.Router({ $rootEl: $("#content") });
+	HexApp.$modalEl = $("#modal");
 	Backbone.history.start();
   }
 };
