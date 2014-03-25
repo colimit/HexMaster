@@ -2,14 +2,15 @@ class SessionsController < ApplicationController
   
   def create
      user = User.find_by_credentials(
-       params[:user][:username],
-       params[:user][:password]
+       params[:username],
+       params[:password]
      )
 
      if user.nil?
-       render :json => "Credentials were wrong"
+       render :json => "Incorrect username or password"
      else
        self.current_user = user
+       puts user.to_json
        render :json => user
      end
    end

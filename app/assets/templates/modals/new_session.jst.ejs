@@ -4,11 +4,20 @@
 	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	  <h4 class="modal-title">Sign In</h4>
 	</div>
-	<div class="modal-body">
-	  fliwlijfewa
-	</div>
+	<form class="modal-body">
+		<div class="error-message"></div>
+        <fieldset>
+            <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input class="form-control" placeholder="Username" type="text" id="username" name="session[username]" autofocus>
+                </div>
+            <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input class="form-control" placeholder="Password" type="password" name="session[password]">					
+            </div>
+        </fieldset>
 	<div class="modal-footer">
-	  <a class="btn close-modal">Close</a>
-	  <a class="btn btn-primary">Submit</a>
+	  <input type="submit" class="btn btn-primary pull-right submit" value="Submit"></input>
 	</div>
+	</form>
 </div>

@@ -1,6 +1,9 @@
 class GamesController < ApplicationController
   def index
     @games = Game.joins(:comments).uniq
+    puts current_user.username
+    puts current_user
+    puts current_user.id
   end
 
   def show

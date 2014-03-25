@@ -31,10 +31,15 @@
 			this.gameNav.jump();
 		},
 		
-		events: { "click .sign-in": "launchSignIn"},
+		events: { "click .sign-in": "launchSignIn",
+				  "click .sign-up": "launchSignUp"},
 		
 		launchSignIn: function(){
 			new HexApp.Views.NewSession()
+		},
+		
+		launchSignUp: function(){
+			new HexApp.Views.NewUser()
 		}
 		
 	});

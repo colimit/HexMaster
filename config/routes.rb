@@ -4,6 +4,8 @@ HexApp::Application.routes.draw do
   end
   resources :advisors, :only => [:new, :create, :show]
   resources :comments, :only => [:create]
+  resource :session, :only => [:create, :destroy]
+  resources :users, :only => [:create]
   resources :games, :only => [:show], :defaults => { :format => 'json' }
   root :to => "games#index"
   

@@ -1,8 +1,8 @@
 HexApp.BaseModalView = Backbone.View.extend({
 
-    className: 'modal-dialog',
+    className: 'modal-dialog modal-sm',
 	
-    events: {
+    baseEvents: {
       'hidden.bs.modal': 'teardown',
 	  'click .close-modal': 'teardown'
     },
@@ -12,14 +12,13 @@ HexApp.BaseModalView = Backbone.View.extend({
 	//and it should handle the rest
     initialize: function(options) {
       // _(this).bindAll();
+
+	  _.extend(this.events, this.baseEvents)
 	  this.options = options;
       this.render();
 	  this.launch();
     },
 
-    // show: function() {
-    //   this.$el.modal('show');
-    // },
 
     teardown: function() {
       HexApp.$modalEl.modal("hide");
@@ -27,8 +26,6 @@ HexApp.BaseModalView = Backbone.View.extend({
 
     render: function() {
       this.$el.html(this.template(this.options));
-      //this.$el.modal("show"); //{show:false}); 
-	  //debugger
       return this;
     },
 	

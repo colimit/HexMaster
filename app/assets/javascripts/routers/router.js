@@ -10,6 +10,12 @@
 
 		initialize: function (options) {
 			this.$rootEl = options.$rootEl;
+			this.makeNavBar();
+		},
+		
+		makeNavBar: function () {
+			var navbar = new HexApp.Views.NavBar();
+			$("#navbar").append(navbar.render().$el)
 		},
 
 		index: function () {

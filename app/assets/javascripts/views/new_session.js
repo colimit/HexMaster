@@ -1,4 +1,4 @@
-/*global JST, HexApp, _*/
+/*global JST, HexApp, $*/
 
 HexApp.Views.NewSession = HexApp.BaseModalView.extend({
 	
@@ -6,11 +6,23 @@ HexApp.Views.NewSession = HexApp.BaseModalView.extend({
 	
     template: JST['modals/new_session'],
 	// 
-	// events: { "click .close-modal": "handleSubmit" },
+	events: { "submit form": "handleSubmit" },
 	
-	handleSubmit: function(event){	
-		debugger
-		this.teardown();
+	handleSubmit: function(event){
+		event.preventDefault();	
+		var form = this.$("form");
+		session = new HexApp.Models.Session();
+		var that = this;
+		session.save(form.serializeJSON()["session"], {
+			success: function(model){
+				HexApp.currentUser.set(model.attributes);
+				that.teardown();
+			},
+			error: function(model, response){
+				this.$(".error-message").addClass("alert alert-danger")
+				this.$(".error-message").html(response.responseText);
+			}
+		});
 	}
 	
  });
