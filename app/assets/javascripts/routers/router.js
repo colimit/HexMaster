@@ -19,8 +19,7 @@
 		},
 
 		index: function () {
-			var board = new HexApp.Board(13);
-			var view = new HexApp.Views.BoardShow({ board: board });
+			var view = new HexApp.Views.GamesIndex({collection: HexApp.games});
 			this._swapview(view);
 		},
 		

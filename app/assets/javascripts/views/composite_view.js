@@ -36,6 +36,14 @@
 				this._subviews = {};
 			}
 			return this._subviews;
+		},
+		
+		
+		render: function () {
+			var renderedContent = this.template();
+			this.$el.html(renderedContent);
+			this.renderSubviews();
+			return this;
 		}
 	});
 })();

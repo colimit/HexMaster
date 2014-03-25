@@ -6,8 +6,8 @@ HexApp::Application.routes.draw do
   resources :comments, :only => [:create]
   resource :session, :only => [:create, :destroy]
   resources :users, :only => [:create]
-  resources :games, :only => [:show], :defaults => { :format => 'json' }
-  root :to => "games#index"
+  resources :games, :only => [:show, :index], :defaults => { :format => 'json' }
+  root :to => "app_launchers#index"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

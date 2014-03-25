@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
 
    def destroy
      logout_current_user!
-     render :json => "Logged out"
+     render :json => nil
    end
 end

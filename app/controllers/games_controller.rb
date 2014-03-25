@@ -1,9 +1,7 @@
 class GamesController < ApplicationController
   def index
     @games = Game.joins(:comments).uniq
-    puts current_user.username
-    puts current_user
-    puts current_user.id
+    render :json => @games
   end
 
   def show
@@ -14,4 +12,5 @@ class GamesController < ApplicationController
     @comments = @game.comments.includes(:user)
     render "games/show"
   end
+  
 end

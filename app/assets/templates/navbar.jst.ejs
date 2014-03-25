@@ -1,0 +1,21 @@
+<!--=== Top ===-->    
+<div class="top">
+    <div class="container">
+        <ul class="loginbar pull-right">
+            <% if (user.id) {%>  
+              <li><a><%= user.escape('username') %></a></li>
+			  <li class="devider"></li>   
+              <li><a class="btn sign-out">Sign Out</a></li>
+            <% } else { %>
+              
+              <li><a class="btn sign-in" role = "button">Sign In</a></li>
+              <li class="devider"></li>   
+              <li><a role="button" class="btn sign-up" data-toggle="modal">Sign Up</a></li>
+            <% }%>
+			 <li class="devider"></li>
+			<li><a href="#/" class "btn back" role="button">Home</a></li>
+			             
+        </ul>
+    </div>      
+</div><!--/top-->
+<!--=== End Top ===--> 

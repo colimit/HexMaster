@@ -140,27 +140,32 @@ html {
   color: #0000B5; }
 
 .game-header {
-  margin: 10px;
- }
- 
- hr { 
-	 margin: 0px;
-	 margin-bottom: 5px;
-	 width: 720px;
-	 left: 10px;
-	 position: absolute;
- }
- 
- .modal-header {
-	 background-color: #FDD;
-	 color: #555;
-	 border-top-left-radius: 6px; 
-	 border-top-right-radius: 6px;
- }
- 
- .btn.btn-primary {
-	 background-color: #DDF;
-	 color: #555;
-	 border: #999 1pt solid;
- }
+  margin: 10px; }
 
+hr {
+  margin: 0px;
+  margin-bottom: 5px;
+  width: 720px;
+  left: 10px;
+  position: absolute; }
+
+.modal-header {
+  background-color: #FDD;
+  color: #555;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px; }
+
+.btn.btn-primary {
+  background-color: #DDF;
+  color: #555;
+  border: #999 1pt solid; }
+
+#navbar {
+  position: relative;
+  display: block;
+}
+
+#content {
+  display: block;
+  position: relative;
+}

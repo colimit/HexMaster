@@ -1,0 +1,19 @@
+<tr>
+	<th></th> <th> red player</th> <th> blue player </th> 
+</tr>
+<% games.each(function(game) {%>
+	<tr>
+		<td>
+			<a href="<%= "#/games/" + game.escape("little_golem_id") %>">
+				 LG #<%= game.escape("little_golem_id")%>: </a>
+		</td>
+		<td>
+			<%= game.escape("red_name") %>
+		</td>
+
+		<td>
+			<%= game.escape("blue_name") %>
+		</td>
+	</tr>
+<% }); %>
+</h2>
