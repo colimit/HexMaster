@@ -79,5 +79,5 @@ HexApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   # # Precompile additional assets
- #  config.assets.precompile += %w( .svg .eot .woff .ttf )
+   config.assets.precompile += %w( .svg .eot .woff .ttf )
 end
