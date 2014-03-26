@@ -167,10 +167,50 @@ hr {
 }
 
 #lookup-form {
-	margin: 5pt;
+	margin: 0pt;
 }
+
+#games-table {
+	display: inline-block;
+	width: 480px;
+}
+
+
+
+.red-player-head {
+	background-color: #FDD;
+}
+.blue-player-head {
+	background-color: #DDF;
+}
+.games-head {
+	background-color: #E8E8E8;
+}
+
+.input-group .lookup-input {
+	display: inline-block;
+	width: 150px;
+}
+
+.radio-bar {
+  position: absolute;
+  left: 000px;
+  top: -20px;
+  width: 500px;
+}
+
+.radio {
+	display: inline;
+}
+
 
 #content {
   display: block;
   position: relative;
 }
+
+  
+.loginbar form {
+  display: inline-block;
+}
+  

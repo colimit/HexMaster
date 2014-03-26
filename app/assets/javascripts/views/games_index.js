@@ -9,7 +9,6 @@
 			this.addSubview("#games-table", new HexApp.Views.GamesTable({
 				collection:  HexApp.games
 			}));
-			this.addSubview("#lookup-form", new HexApp.Views.LookupForm());
 		}
 
 	});

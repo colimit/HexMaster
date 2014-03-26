@@ -1,6 +1,12 @@
+<div class=".preview_area"> </div>
+<form>
 <textarea type="text" name="comment[body]" value="" id="body"></textarea>
 <input type="hidden" name="comment[game_id]" 
 	value="<%= game.id %>" id="comment[game_id]">
-
+<button class="btn btn-primary" type="button" id="preview" >Preview
+</button>
+<button class="btn btn-primvar" type="button" id="insert-branch" >
+	Insert Branch
+</button>
 <input type="submit" name="submit" value="Comment" id="submit">
-
+</form>

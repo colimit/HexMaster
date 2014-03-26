@@ -1,8 +1,10 @@
+
+
+	<div class="loginbar navbar-left" id="lookup-form"></div>
 <!--=== Top ===-->    
 <div class="top">
-    <div class="container">
-		<div class="loginbar pull-left" id="lookup-form"></div>
-        <ul class="loginbar pull-right">
+    <div class="container-fluid">
+        <ul class="loginbar navbar-right">
             <% if (user.id) {%>  
               <li><a><%= user.escape('username') %></a></li>
 			  <li class="devider"></li>   

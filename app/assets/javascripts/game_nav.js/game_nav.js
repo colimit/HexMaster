@@ -29,17 +29,22 @@
 			var board = this.board;
 			board.clear();
 			this.clearBranch();
-			if (number === 0) { return true;}
-			this.gameMoves.every(function (move, index) {
-				return ( !number || index < number) && board.handleMove(move);
-			});
-			this.setBaseMove(number || this.gameMoves.length);
-			this.trigger("setCurrentMove", number);
+			var i = 0;
+			while (!(i >= number) && board.handleMove(this.gameMoves[i])){
+				i++;
+			}
+			this.setBaseMove(i );
+			console.log("set move = " + i)
+			this.trigger("setCurrentMove", i);
 		},
 		
 		setBaseMove: function (baseMove) {
 			this.baseMove = baseMove;
 			this.trigger("setBaseMove", baseMove);
+		},
+		
+		currentMoveNum: function () {
+			return this.branch.length || this.baseMove;
 		},
 		
 		reset: function () {
@@ -119,18 +124,25 @@
 				}
 			}
 		},
-		
-		back: function() {
-			
-		},
-		
+	
 		activeNumber: function () {
 			var moveNum;
 			this.branch.forEach( function (move, i){ 
 				if (move) { moveNum = i + 1; }
 			});
 			return moveNum || this.baseMove;
-		}
+		},
+		
+		next: function () {
+			if (this.branch.length === 0){ 
+				this.jump(this.currentMoveNum() + 1) 
+			}
+		},
+	
+		prev: function () {
+			console.log("prev: currentMoveNum =" + this.currentMoveNum());
+			this.goTo(this.currentMoveNum() - 1);
+		},
 		
 	};
 		

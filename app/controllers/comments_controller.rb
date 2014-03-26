@@ -4,8 +4,11 @@ class CommentsController < ApplicationController
     @game = Game.find(params[:comment][:game_id])
     @comment = @game.comments.build(comments_params)
     @comment.user = current_user
-    flash.now[:errors] unless @comment.save
-    render "comments/show"
+    if @comment.save
+      render "comments/show"
+    else
+      render :json => "Comment can't be blank."
+    end
   end
 
   def comments_params

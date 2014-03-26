@@ -14,8 +14,10 @@
 				model: this.model,
 				gameNav: gameNav
 			});
+			var navBarView = new HexApp.Views.RadioBar({ gameNav: gameNav });
 			this.addSubview("#game-display", boardView);
 			this.addSubview("#game-display", movesView);
+			this.addSubview("#game-display", navBarView);
 			this.addSubview("#comments", commentsView);
 		},
 

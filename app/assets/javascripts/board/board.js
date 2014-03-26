@@ -95,6 +95,7 @@
 		},	
 	
 		valid: function(move){
+			if (this.winner()) {return false; }
 			if (move === "swap"){
 				return this.canSwap();
 			} else if (move === "resign") {
@@ -167,16 +168,24 @@
 			var stack = this.startPieces(color);
 			var visited = this.startPieces(color);
 			var that = this;
+			var isVisited = function(coord){
+				return visited.some( function (oldCoord){
+					return oldCoord[0] === coord[0] && oldCoord[1] === coord[1]
+				})
+			}
 			var processNewCoord = function (newCoord) {
-				if (that.isFinish(newCoord)) {
+				if (that.isFinish(newCoord, color)) {
 					return true;
-				} else if (visited.indexOf(coord) > -1) {
+				} else if (!isVisited(newCoord)) {	
+					visited.push(newCoord);
 					stack.push(newCoord);
 				}
 			};
 			while (stack.length > 0){
 				var coord = stack.pop();
-				this.neighbors(coord).forEach(processNewCoord);
+				if (this.neighbors(coord).some(processNewCoord)){
+					return true;
+				};
 			}
 			return false;
 		},
@@ -199,17 +208,18 @@
 	
 		isFinish: function (coord, color) {
 			if (color === "red") {
-				return coord[1] === this.size - 1;
-			} else if (color === "blue") {
 				return coord[0] === this.size - 1;
+			} else if (color === "blue") {
+				return coord[1] === this.size - 1;
 			}
 		},
 		
 		neighbors: function (coord) {
 			var neigbs = [];
 			var color = this.getHex(coord);
+			var that = this
 			this.adjacentCoords(coord).forEach(function (newCoord) {
-				if (this.getHex(newCoord) === color){
+				if (that.getHex(newCoord) === color){
 					neigbs.push(newCoord);
 				}
 			});
