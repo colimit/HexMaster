@@ -19,7 +19,8 @@
 		},
 
 		index: function () {
-			var view = new HexApp.Views.GamesIndex({collection: HexApp.games});
+			HexApp.games.fetch();
+			var view = new HexApp.Views.GamesIndex();
 			this._swapview(view);
 		},
 		

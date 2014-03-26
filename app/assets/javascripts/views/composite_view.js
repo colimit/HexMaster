@@ -7,7 +7,11 @@
 			var selectorSubviews = 
 				this.subviews()[selector] || (this.subviews()[selector] = []);
 			selectorSubviews.push(view);
-			var $selectorEl = this.$(selector);
+			if (selector) {
+				var $selectorEl = this.$(selector);
+			} else {
+				var $selectorEl = this.$el;
+			}
 			$selectorEl.append(view.$el);
 		},
 		

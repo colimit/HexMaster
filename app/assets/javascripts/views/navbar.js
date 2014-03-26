@@ -22,7 +22,9 @@ HexApp.Views.NavBar = Backbone.View.extend({
 	
 	render: function () {
 		renderedContent = this.template( {user: HexApp.currentUser} );
+		var form = new HexApp.Views.LookupForm()
 		this.$el.html(renderedContent);
+		this.$("#lookup-form").append(form.render().$el);
 		return this;
 	},
 	

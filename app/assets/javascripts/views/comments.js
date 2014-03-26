@@ -27,13 +27,6 @@
 			}))
 			this.listenTo(this.collection, "add", this.addComment)
 		},
-
-		render: function () {
-			var renderedContent = this.template();
-			this.$el.html(renderedContent);
-			this.renderSubviews();
-			return this;
-		},
 		
 		handleMoveClick: function (event) {
 			var move = $(event.target);

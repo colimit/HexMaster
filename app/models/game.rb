@@ -90,7 +90,9 @@ class Game < ActiveRecord::Base  #
             :path => "servlet/sgf/#{id}/game.hsgf"
           ).to_s   
     game_hsgf = RestClient.get(game_url)
-    read_hsgf(game_hsgf)
+    game = read_hsgf(game_hsgf)
+    game.save! if game.result
+    return game
   end
   
   

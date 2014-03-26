@@ -1,6 +1,7 @@
 <!--=== Top ===-->    
 <div class="top">
     <div class="container">
+		<div class="loginbar pull-left" id="lookup-form"></div>
         <ul class="loginbar pull-right">
             <% if (user.id) {%>  
               <li><a><%= user.escape('username') %></a></li>
