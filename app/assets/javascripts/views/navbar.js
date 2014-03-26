@@ -33,7 +33,6 @@ HexApp.Views.NavBar = Backbone.View.extend({
 			type: "DELETE",
 			url: "/session",
 			success: function(){
-				debugger
 				HexApp.currentUser.clear();
 			},
 			error: function(argument1, argument2){

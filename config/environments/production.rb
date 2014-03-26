@@ -78,6 +78,6 @@ HexApp::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
-  # Precompile additional assets
-  config.assets.precompile += %w( .svg .eot .woff .ttf )
+  # # Precompile additional assets
+ #  config.assets.precompile += %w( .svg .eot .woff .ttf )
 end

@@ -170,9 +170,9 @@
 			var that = this;
 			var isVisited = function(coord){
 				return visited.some( function (oldCoord){
-					return oldCoord[0] === coord[0] && oldCoord[1] === coord[1]
-				})
-			}
+					return oldCoord[0] === coord[0] && oldCoord[1] === coord[1];
+				});
+			};
 			var processNewCoord = function (newCoord) {
 				if (that.isFinish(newCoord, color)) {
 					return true;
@@ -185,7 +185,7 @@
 				var coord = stack.pop();
 				if (this.neighbors(coord).some(processNewCoord)){
 					return true;
-				};
+				}
 			}
 			return false;
 		},
@@ -217,7 +217,7 @@
 		neighbors: function (coord) {
 			var neigbs = [];
 			var color = this.getHex(coord);
-			var that = this
+			var that = this;
 			this.adjacentCoords(coord).forEach(function (newCoord) {
 				if (that.getHex(newCoord) === color){
 					neigbs.push(newCoord);
