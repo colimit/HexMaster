@@ -36,6 +36,8 @@
 			this.setBaseMove(i );
 		},
 		
+		
+		
 		setBaseMove: function (baseMove) {
 			this.baseMove = baseMove;
 			this.trigger("setBaseMove", baseMove);
