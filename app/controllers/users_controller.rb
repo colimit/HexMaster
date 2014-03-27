@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.ensure_session_token
     if @user.save
-      current_user = @user
+      self.current_user = @user
       render :json => @user
     else
       render :json => @user.errors.full_messages.first 

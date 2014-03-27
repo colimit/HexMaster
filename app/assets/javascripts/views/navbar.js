@@ -1,6 +1,7 @@
 HexApp.Views.NavBar = Backbone.View.extend({
 	initialize: function(options) {
-		this.listenTo(HexApp.currentUser, "change set", this.render)
+		this.listenTo(HexApp.currentUser, "change set", this.render);
+		this.$targetEl = options.$targetEl;
 	},
 	
 	template: JST["navbar"],
@@ -26,6 +27,10 @@ HexApp.Views.NavBar = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		this.$("#lookup-form").append(form.render().$el);
 		return this;
+	},
+	
+	refresh: function(){
+		this.$targetEl.append(this.render().$el)
 	},
 	
 	signOut: function(){

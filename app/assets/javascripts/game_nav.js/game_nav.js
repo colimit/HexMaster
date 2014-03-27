@@ -144,6 +144,14 @@
 			this.goTo(this.currentMoveNum() - 1);
 		},
 		
+		branchMovesString: function () {
+			var moves = [];
+			this.branch.forEach(function(move, index){
+				if (move) moves.push((index + 1) + "." + move);
+			});
+			return moves.join(" ");
+		}
+		
 	};
 		
 })();

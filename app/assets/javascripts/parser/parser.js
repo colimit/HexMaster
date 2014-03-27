@@ -21,9 +21,9 @@
 	
 			var pipeMatcher = /\|\s?/;
 	
-			var moveMatcher = /(\d+)\.\s*([a-t]1?\d)\s?/;
+			var moveMatcher = /(\d+)\.?\s*([a-t]1?\d)\s?/;
 	
-			var textMatcher = /([\s\S]+?)(?=\||\d+\.\s*[a-t]1?\d\s?|$)/;
+			var textMatcher = /([\s\S]+?)(?=\||\d+\.?\s*[a-t]1?\d\s?|$)/;
 		
 			
 			return this.loop(
@@ -77,7 +77,7 @@
 		handlers: {
 	
 			pipe: function() {
-				if (this.movelist) this.container.append(this.movelist());
+				if (this.movelist) this.container.append(this.movelist);
 				this.container.append(this.pipeSpan());
 				this.movelist = null;
 			},

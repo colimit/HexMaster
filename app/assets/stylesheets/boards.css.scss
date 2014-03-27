@@ -159,6 +159,11 @@ hr {
   background-color: #DDF;
   color: #555;
   border: #999 1pt solid; }
+  
+.btn.btn-danger {
+background-color: #FDD;
+color: #555;
+border: #999 1pt solid; }
 
 #navbar {
   position: relative;
@@ -213,4 +218,25 @@ hr {
 .loginbar form {
   display: inline-block;
 }
+
+.comments-list {
+  display: inline-block;
+  height: 340px;
+  overflow-y: scroll;
+}
+
+#body {
+	width: 610px;
+	height: 66px;
+	display:inline-block;
+	float:left;
+}
+
+.comment-button {
+	position: relative;
+	top: 0px;
+	display:inline-block;
+	width: 120px;
+}
+
   

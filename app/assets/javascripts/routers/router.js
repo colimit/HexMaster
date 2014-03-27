@@ -14,8 +14,8 @@
 		},
 		
 		makeNavBar: function () {
-			var navbar = new HexApp.Views.NavBar();
-			$("#navbar").append(navbar.render().$el)
+			HexApp.navbar = new HexApp.Views.NavBar({$targetEl: $("#navbar")});
+			HexApp.navbar.refresh()
 		},
 
 		index: function () {

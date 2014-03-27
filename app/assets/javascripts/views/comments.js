@@ -23,7 +23,8 @@
 				}));
 			});
 			this.addSubview(".new-comment", new HexApp.Views.NewComment({
-				model: this.model
+				model: this.model,
+				gameNav: this.gameNav
 			}))
 			this.listenTo(this.collection, "add", this.addComment)
 		},
@@ -50,6 +51,12 @@
 		addComment: function (comment) {
 			var subview = new HexApp.Views.Comment({ model: comment });
 			this.addSubview(".comments-list", subview);
+			this.fixScrollPosition();
+		},
+		
+		fixScrollPosition: function(){
+			var tableBody = this.$(".comments-list");
+			tableBody.scrollTop(1000000);
 		}
 		
 	
