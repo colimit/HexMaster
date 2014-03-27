@@ -1,6 +1,8 @@
 <div class="media-body">
   <hr>
-  <h4 class="media-heading"> <%= comment.escape("username") %> </h4>
+  <h4 class="media-heading"> <div class="comment-username"><%= name %></div> 
+	  <div class="comment-time"> <%= comment.dateString()%> </div>
+	  </h4>
   <div class="comment-body"></div>
 </div>
 

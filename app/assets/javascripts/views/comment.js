@@ -14,7 +14,11 @@
 		template: JST["comments/show"],
 
 		render: function () {
-			var renderedContent = this.template({ comment: this.model });
+			
+			var renderedContent = this.template({
+				 comment: this.model,
+			 	 name: this.model.escape("username") || "Guest"
+			 });
 			this.$el.html(renderedContent);
 			var body = this.model.escape("body");
 			this.$(".comment-body").append(HexApp.commentInterpreter.exec(body));
