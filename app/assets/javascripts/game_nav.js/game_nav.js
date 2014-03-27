@@ -50,9 +50,7 @@
 			var oldBranch = this.branch;
 			this.jump(this.baseMove);
 			var that = this;
-			oldBranch.forEach(function (move) {
-				that.push(move);
-			});
+			oldBranch.forEach(function (move) { that.push(move); });
 		},
 		
 		
@@ -134,12 +132,12 @@
 		
 		next: function () {
 			if (this.branch.length === 0){ 
-				this.jump(this.currentMoveNum() + 1) 
+				var move = this.gameMoves[this.currentMoveNum()]
+				if (move) { this.push(move) }
 			}
 		},
 	
 		prev: function () {
-			console.log("prev: currentMoveNum =" + this.currentMoveNum());
 			this.goTo(this.currentMoveNum() - 1);
 		},
 		

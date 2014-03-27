@@ -35,7 +35,10 @@
 				success: function (fetched){
 					var view = new HexApp.Views.GameShow({ model: fetched });
 					that._swapview(view);
-					view.reset();
+					view.reset()
+				},
+				error: function (fetched, response) {
+					alert(response.responseText);
 				}
 			});
 		},

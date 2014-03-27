@@ -76,7 +76,7 @@
 		},
 	
 		getHex: function(coord){
-			return this.rows[coord[0]][coord[1]];
+			return  this.rows[coord[0]] && this.rows[coord[0]][coord[1]];
 		},
 	
 		handleMove: function(move) {

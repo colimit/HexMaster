@@ -85,7 +85,7 @@ html {
   display: inline;
   height: 336px;
   position: absolute;
-  top: 65px; }
+  top: 50px; }
 
 #comments {
   display: block;
@@ -206,6 +206,9 @@ border: #999 1pt solid; }
 
 .radio {
 	display: inline;
+	position: relative;
+	left: 370px;
+	top: 30px;
 }
 
 
@@ -232,11 +235,20 @@ border: #999 1pt solid; }
 	float:left;
 }
 
+.comment-body {
+	white-space: pre-wrap;
+}
+
 .comment-button {
 	position: relative;
 	top: 0px;
 	display:inline-block;
 	width: 120px;
 }
+
+.radio .btn-danger {
+	border-radius: 118pt;
+}
+
 
   

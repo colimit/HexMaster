@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render "comments/show"
     else
-      render :json => "Comment can't be blank."
+      render :json => "Comment can't be blank.", :status => 422
     end
   end
 

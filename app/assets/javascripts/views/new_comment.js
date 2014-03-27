@@ -5,6 +5,16 @@
 		
 		initialize: function (options) {
 			this.gameNav = options.gameNav;
+			this.gameNav.on("clearBranch", this.disableInsert.bind(this) );
+			this.gameNav.on("setBranchMove", this.enableInsert.bind(this));
+		},
+		
+		disableInsert: function () {
+			this.$('#insert-branch').prop('disabled', true);
+		},
+		
+		enableInsert: function () {
+			this.$('#insert-branch').prop('disabled', false);
 		},
 		
 		tagName: "form",
@@ -18,11 +28,23 @@
 			var text = this.$("#body").val();
 			var commentPreview = HexApp.commentInterpreter.exec(text)
 			this.$(".preview-area").html(commentPreview);
+			if (text) { 
+				this.$(".preview-area").html(
+					"<h5> preview: </h5>" + commentPreview
+				);
+				this.$("#submit").prop('disabled', false)
+			} else {
+				this.$("#submit").prop('disabled', true)
+			}
 		},
 		
 		render: function () {
 			var renderedContent = this.template({ game: this.model });
 			this.$el.html(renderedContent);
+			if (this.gameNav.branch.length === 0){
+				this.$('#insert-branch').prop('disabled', true);
+			}
+			this.$("#submit").prop('disabled', true)
 			return this;
 		},
 		

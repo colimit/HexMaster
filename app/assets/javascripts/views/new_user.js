@@ -16,7 +16,6 @@ HexApp.Views.NewUser = HexApp.BaseModalView.extend({
 		var that = this;
 		user.save(form.serializeJSON(), {
 			success: function(model){
-				debugger
 				HexApp.currentUser = model;
 				HexApp.navbar.refresh();
 				that.teardown();

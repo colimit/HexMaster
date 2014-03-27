@@ -14,9 +14,15 @@
 	
 		initialize: function (options) {
 			this.gameNav = options.gameNav;
-			var that = this;
 			//comments views added once on initialize since
 			//this view is made only after fetch
+			this.addContent();
+			this.listenTo(this.collection, "add", this.addComment)
+			this.listenTo(this.collection, "sync", this.fixScrollPosition)
+		},
+		
+		addContent: function () {
+			var that = this;
 			this.collection.each(function (comment){
 				that.addSubview(".comments-list", new HexApp.Views.Comment({
 					model: comment
@@ -26,8 +32,6 @@
 				model: this.model,
 				gameNav: this.gameNav
 			}))
-			this.listenTo(this.collection, "add", this.addComment)
-			this.listenTo(this.collection, "sync", this.fixScrollPosition)
 		},
 		
 		handleMoveClick: function (event) {
@@ -46,6 +50,7 @@
 			event.preventDefault();
 			var form = $(event.target);
 			var comment = this.collection.add(form.serializeJSON().comment);
+			this.$("#body").val("");
 			comment.save();
 		},
 		
@@ -57,6 +62,18 @@
 		fixScrollPosition: function(){
 			var tableBody = this.$(".comments-list");
 			tableBody.scrollTop(1000000);
+		},
+		
+		render: function () {
+			if (this.model.get("result")){
+				var renderedContent = this.template();
+				this.$el.html(renderedContent);
+				this.renderSubviews();
+				return this;
+			} else {
+				this.$el.html("<h5> Game in progress </h5>");
+				return this;
+			}
 		}
 		
 	

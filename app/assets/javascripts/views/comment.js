@@ -17,7 +17,7 @@
 			var renderedContent = this.template({ comment: this.model });
 			this.$el.html(renderedContent);
 			var body = this.model.escape("body");
-			this.$(".media-body").append(HexApp.commentInterpreter.exec(body));
+			this.$(".comment-body").append(HexApp.commentInterpreter.exec(body));
 			return this;
 		}
 		

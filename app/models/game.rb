@@ -6,6 +6,10 @@ class Game < ActiveRecord::Base  #
   has_many :moves, inverse_of: :game
   has_many :comments, inverse_of: :game
   
+  class InvalidGameException < RuntimeError
+  end
+  
+  
   #This creates a game with moves from
   #littlegolem.com's HSGF string. Note that this 
   #format has the unfortunate property that the fields giving the names of the    #players are reversed from what they should be
