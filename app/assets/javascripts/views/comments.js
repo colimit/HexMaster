@@ -27,6 +27,7 @@
 				gameNav: this.gameNav
 			}))
 			this.listenTo(this.collection, "add", this.addComment)
+			this.listenTo(this.collection, "sync", this.fixScrollPosition)
 		},
 		
 		handleMoveClick: function (event) {
@@ -51,7 +52,6 @@
 		addComment: function (comment) {
 			var subview = new HexApp.Views.Comment({ model: comment });
 			this.addSubview(".comments-list", subview);
-			this.fixScrollPosition();
 		},
 		
 		fixScrollPosition: function(){

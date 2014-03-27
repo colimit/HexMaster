@@ -34,13 +34,12 @@
 				i++;
 			}
 			this.setBaseMove(i );
-			console.log("set move = " + i)
-			this.trigger("setCurrentMove", i);
 		},
 		
 		setBaseMove: function (baseMove) {
 			this.baseMove = baseMove;
 			this.trigger("setBaseMove", baseMove);
+			this.trigger("setCurrentMove", baseMove);
 		},
 		
 		currentMoveNum: function () {
@@ -117,7 +116,7 @@
 			}
 			if (this.board.handleMove(move)) {
 				if (this.branch.length === 0 && 
-					this.gameMoves[this.moveNum] === move){
+					this.gameMoves[this.baseMove] === move){
 						this.setBaseMove(this.baseMove + 1);
 				} else {
 					this.setBranchMove(this.activeNumber() + 1, move);

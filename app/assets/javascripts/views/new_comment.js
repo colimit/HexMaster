@@ -38,6 +38,8 @@
 			var branchString = this.gameNav.branchMovesString()
 			if (branchString) {
 				this.insertIntoText("|" + branchString);
+			} else {
+				alert("Branch is empty.")
 			}
 			this.preview();
 		}
