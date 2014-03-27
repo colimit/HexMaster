@@ -93,9 +93,9 @@ hr { margin: 2px;}
   display: block;
   margin: 0px;
   position: absolute;
-  top: 410px;
+  top: 395px;
   margin: 10px;
-  width: 730px; }
+  width: 740px; }
 
 .move-row .move-number-cell {
   text-align: center;
@@ -126,9 +126,9 @@ hr { margin: 2px;}
   margin-top: 0px;
   background-color: #F5F5F5;}
   
-  .media-body hr {
-	  border-color: #DDD;
-  }
+.media-body hr {
+  border-color: #DDD;
+}
 
 .comment .media-heading {
   color: #434;
@@ -234,10 +234,11 @@ border: #999 1pt solid; }
   display: inline-block;
   height: 340px;
   overflow-y: scroll;
+  width: 740px;
 }
 
 #body {
-	width: 610px;
+	width: 620px;
 	height: 66px;
 	display:inline-block;
 	float:left;
@@ -260,13 +261,29 @@ border: #999 1pt solid; }
 
 .comment-username {
 	display: inline-block;
-	color: #777;
+	color: #696969;
 }
 
 .comment-time {
 	display: inline-block;
 	font-size: 9pt;
 	color: #999;
+}
+
+.game-top-seperator.bottom {
+	position: relative;
+	top: 360px;
+}
+
+.preview-area {
+	margin-bottom: 5pt;
+	padding: 0pt;
+	width: 550pt;
+	
+	h5 { 
+		margin-top: 0pt;
+	}
+	
 }
 
   
