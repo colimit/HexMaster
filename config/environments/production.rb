@@ -81,5 +81,5 @@ HexApp::Application.configure do
   # # Precompile additional assets
   config.assets.precompile += %w( .svg .eot .woff .ttf )
   
-  config.serve_static_assets = true
+  config.assets.compile = true
 end
