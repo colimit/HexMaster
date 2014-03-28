@@ -184,16 +184,19 @@ border: #999 1pt solid; }
 }
 
 #games-table {
-	display: inline-block;
-	width: 480px;
+	text-align: center;
 }
 
 
 
 .red-player-head {
+
+	text-align: center;
 	background-color: #FDD;
 }
 .blue-player-head {
+
+	text-align: center;
 	background-color: #DDF;
 }
 .games-head {
@@ -291,14 +294,22 @@ border: #999 1pt solid; }
 }
 
 .jumbotron .hex-board13 {
-	display: block;
 	position: relative;
-	left: 60px;
-	margin: 30px;
+	left: 0px;
+	margin: 30px auto;
 }
 
 .demo-button {
 	text-align: center;
 }
+
+.recent-games-title {
+	margin: 10px;
+}
+
+.front-board-holder {
+	text-align: center;
+}
+
 
   

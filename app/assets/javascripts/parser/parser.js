@@ -19,11 +19,11 @@
 				return { type: "text", attributes: { text: match[1] }};
 			};
 	
-			var pipeMatcher = /\|\s?/;
+			var pipeMatcher = /\| ?/;
 	
-			var moveMatcher = /(\d+)\.?\s*(([a-t]1?\d)|(swap))\s?/;
+			var moveMatcher = /(\d+)\.? *(([a-t]1?\d)|(swap)) ?/;
 	
-			var textMatcher = /([\s\S]+?)(?=\||\d+\.?\s*(([a-t]1?\d)|(swap))\s?|$)/;
+			var textMatcher = /([\s\S]+?)(?=\||\d+\.? *(([a-t]1?\d)|(swap)) ?|$)/;
 		
 			
 			return this.loop(
