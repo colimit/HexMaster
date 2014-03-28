@@ -20,6 +20,7 @@
 			 	 name: this.model.escape("username") || "Guest"
 			 });
 			this.$el.html(renderedContent);
+			this.$('.comment-username').tooltip()
 			var body = this.model.escape("body");
 			this.$(".comment-body").append(HexApp.commentInterpreter.exec(body));
 			return this;

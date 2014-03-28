@@ -21,7 +21,7 @@ ActiveRecord::Base.transaction do
 
   game.comments.build([{
   body: <<-Comment
-Commenting: 1.g7 2.a1 3.e6 4.b2 is great for red! 2.swap is a better. Even 2.i10 is an improvement, though bad.
+Clickable moves: 1.g7 2.a1 3.e6 4.b2 is great for red! 2.swap is a better. Even 2.i10 is an improvement, though bad.
 
 Variations included in the comments may be clicked on the board. To insert a variation in your comment, just type the move or moves (including the numbers) in your comment. Alternatively, you can cut and paste from another comment, or press "insert branch" to get the current variation on the board. Guests can comment and this page is periodically reset so go ahead and try it!
 Comment
