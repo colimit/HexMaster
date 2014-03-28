@@ -48,6 +48,7 @@
 			var comment = move.parents(".comment");
 			var tokens = comment.find(".token");
 			var gameNav = this.gameNav;
+			gameNav.clearBranch();
 			tokens.each(function(index, token){
 				var data = $(token).data();
 				gameNav[data.type](data.value);
