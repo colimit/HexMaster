@@ -1,13 +1,14 @@
 html {
   background-color: #FFFFFF; }
 
-hr { margin: 2px;}
+hr {
+  margin: 2px; }
 
 .hex-board13 {
   background-image: url(/assets/hexboard13.png);
   width: 560px;
   height: 336px;
-  left: 0px;
+  left: 20px;
   position: absolute;
   background-repeat: no-repeat; }
 
@@ -65,7 +66,7 @@ hr { margin: 2px;}
   margin: 0px;
   top: -25px;
   position: absolute;
-  left: 570px; }
+  left: 592px; }
 
 .moves-table-body {
   overflow-y: scroll;
@@ -124,11 +125,10 @@ hr { margin: 2px;}
   padding-right: 5px;
   padding-bottom: 2px;
   margin-top: 0px;
-  background-color: #F5F5F5;}
-  
+  background-color: #F5F5F5; }
+
 .media-body hr {
-  border-color: #DDD;
-}
+  border-color: #DDD; }
 
 .comment .media-heading {
   color: #434;
@@ -153,7 +153,7 @@ hr { margin: 2px;}
 .game-top-seperator {
   margin: 0px;
   margin-bottom: 5px;
-  width: 720px;
+  width: 748px;
   left: 10px;
   position: relative; }
 
@@ -167,149 +167,140 @@ hr { margin: 2px;}
   background-color: #DDF;
   color: #555;
   border: #999 1pt solid; }
-  
+
 .btn.btn-danger {
-background-color: #FDD;
-color: #555;
-border: #999 1pt solid; }
+  background-color: #FDD;
+  color: #555;
+  border: #999 1pt solid; }
 
 #navbar {
   position: relative;
   display: block;
-  margin: 0pt;
-}
+  margin: 0pt; }
 
 #lookup-form {
-	margin: 0pt;
-}
+  margin: 0pt; }
 
 #games-table {
-	text-align: center;
-}
-
-
+  text-align: center; }
 
 .red-player-head {
+  text-align: center;
+  background-color: #FDD; }
 
-	text-align: center;
-	background-color: #FDD;
-}
 .blue-player-head {
+  text-align: center;
+  background-color: #DDF; }
 
-	text-align: center;
-	background-color: #DDF;
-}
 .games-head {
-	background-color: #E8E8E8;
-}
+  background-color: #E8E8E8; }
 
 .input-group .lookup-input {
-	display: inline-block;
-	width: 150px;
-}
+  display: inline-block;
+  width: 150px; }
 
 .radio-bar {
   position: absolute;
-  left: 000px;
+  left: 0px;
   top: -20px;
-  width: 500px;
-}
+  width: 200px; }
 
 .radio {
-	display: inline;
-	position: relative;
-	left: 370px;
-	top: 30px;
-}
-
+  display: inline;
+  position: relative;
+  left: 383px;
+  top: 30px; }
 
 #content {
   display: block;
-  position: relative;
-}
+  position: relative; }
 
-  
 .loginbar form {
-  display: inline-block;
-}
+  display: inline-block; }
 
 .comments-list {
   display: inline-block;
   height: 340px;
   overflow-y: scroll;
-  width: 740px;
-}
+  width: 758px; }
 
 #body {
-	width: 620px;
-	height: 66px;
-	display:inline-block;
-	float:left;
-}
+  width: 638px;
+  height: 66px;
+  display: inline-block;
+  float: left; }
 
 .comment-body {
-	white-space: pre-wrap;
-}
+  white-space: pre-wrap; }
 
 .comment-button {
-	position: relative;
-	top: 0px;
-	display:inline-block;
-	width: 120px;
-}
+  position: relative;
+  top: 0px;
+  display: inline-block;
+  width: 120px; }
 
 .radio .btn-danger {
-	border-radius: 118pt;
-}
+  border-radius: 118pt; }
 
 .comment-username {
-	display: inline-block;
-	color: #696969;
-}
+  display: inline-block;
+  color: #696969; }
 
 .comment-time {
-	display: inline-block;
-	font-size: 9pt;
-	color: #999;
-}
+  display: inline-block;
+  font-size: 9pt;
+  color: #999; }
 
 .game-top-seperator.bottom {
-	position: relative;
-	top: 360px;
-}
+  position: relative;
+  top: 360px; }
 
 .preview-area {
-	margin-bottom: 5pt;
-	padding: 0pt;
-	width: 550pt;
-	
-	h5 { 
-		margin-top: 0pt;
-	}
-	
-}
+  margin-bottom: 5pt;
+  padding: 0pt;
+  width: 560pt; }
+
+.preview-area h5 {
+  margin-top: 0pt; }
 
 .games-head {
-	background-color: #D8D8D8;
-}
+  background-color: #D8D8D8; }
 
 .jumbotron .hex-board13 {
-	position: relative;
-	left: 0px;
-	margin: 30px auto;
-}
+  position: relative;
+  left: 0px;
+  margin: 30px auto; }
 
 .demo-button {
-	text-align: center;
-}
+  text-align: center; }
 
 .recent-games-title {
-	margin: 10px;
-}
+  margin: 10px; }
 
 .front-board-holder {
-	text-align: center;
-}
+  text-align: center; }
 
+.winner-display {
+  position: absolute;
+  display: inline-block;
+  border: 1pt #DDD solid;
+  border-radius: 5pt;
+  padding: 5pt;
+  top: 280px;
+  font-size: 14pt;
+  left: 13pt; }
 
+.red-name.winner-display {
+  border: 1pt #FDD solid; }
+
+.blue-name.winner-display {
+  border: 1pt #DDF solid; }
+
+.hex-label {
+  position: absolute;
+  padding: 0px;
+  color: #999; }
   
+.new-comment {
+  width: 788px;
+}

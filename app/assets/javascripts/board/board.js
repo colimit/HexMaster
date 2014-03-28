@@ -145,7 +145,7 @@
 		},
 	
 		resign: function() {
-			this.resigned = this.turnColor;
+			this.trigger("resign", this.oppositeColor(this.turnColor));
 		},
 	
 		undo: function() {

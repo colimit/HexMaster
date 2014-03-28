@@ -9,8 +9,11 @@
 			this.size = this.board.size;
 			this.$el.addClass("hex-board" + this.size);
 			this.makeSpaces();
-			this.affixSpaces();
+			this.makeRankLabels();
+			this.makeRowLabels();
+			this.affixElements();
 			this.board.on("setHex", this.setSpace.bind(this));
+			this.board.on("resign", this.updateWinner.bind(this))
 		},
 		
 		makeSpaces: function(){
@@ -25,6 +28,23 @@
 			}
 		},
 		
+		makeRankLabels: function() {
+			this.rankLabels = []
+			for (var i = 0; i < this.size; i++ ) {
+				this.rankLabels.push(
+					new HexApp.Views.LabelShow({ coord: [i, -1] })
+				);
+			}
+		},
+		
+		makeRowLabels: function() {
+			this.fileLabels = []
+			for (var i = 0; i < this.size; i++ ) {
+				this.fileLabels.push(
+					new HexApp.Views.LabelShow({ coord: [-1, i] })
+				);
+			}
+		},
 		
 		events: {
 			"click .hex-space": "handleSpaceClick"
@@ -34,12 +54,36 @@
 			var move = $(event.target).attr("id");
 			this.gameNav.push(move);
 		},
+		
+		updateWinner: function (won) {
+			var winner = this.gameNav.board.winner() || won;
+			if (winner) {
+				var capitalizedWinner = winner.charAt(0).toUpperCase() + 
+											winner.slice(1);
+						
+				this.$winnerEl.html(capitalizedWinner + " wins")
+				this.$winnerEl.addClass(winner+ "-name")
+				this.$winnerEl.removeClass("hidden")
+			} else {
+				this.$winnerEl.empty();
+				this.$winnerEl.removeClass("red-name blue-name")
+				this.$winnerEl.addClass("hidden")
+			}
+		},
 	
-		affixSpaces: function(){
+		affixElements: function(){
 			var that = this;
 			this.forEachSpace( function (space) {
 				that.$el.append(space.$el);
 			});
+			this.$winnerEl = $("<div class='winner-display'>");
+			this.$el.append(this.$winnerEl);
+			this.rankLabels.forEach(function (rankLabel){
+				that.$el.append(rankLabel.$el)
+			});
+			this.fileLabels.forEach(function (fileLabel){
+				that.$el.append(fileLabel.$el)
+			})
 		},
 	
 		renderSpaces: function(){
@@ -47,9 +91,19 @@
 				space.render();
 			});
 		},
+		
+		renderRankLabels: function () {
+			this.rankLabels.forEach( function(rankLabel){ rankLabel.render(); })
+		},
+		
+		renderFileLabels: function () {
+			this.fileLabels.forEach( function(fileLabel){ fileLabel.render(); })
+		},
 	
 		render: function () {
 			this.renderSpaces();
+			this.renderRankLabels();
+			this.renderFileLabels();
 			return this;
 		},
 	
@@ -67,7 +121,8 @@
 		
 		setSpace: function(coord, color) {
 			this.getSpace(coord).setPiece(color);
-		},
+			this.updateWinner();
+		}
 	
 	});
 })();
