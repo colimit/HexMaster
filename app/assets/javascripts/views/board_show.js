@@ -67,7 +67,7 @@
 		
 		setSpace: function(coord, color) {
 			this.getSpace(coord).setPiece(color);
-		}
+		},
 	
 	});
 })();

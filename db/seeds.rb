@@ -65,7 +65,15 @@ Comment
 21.j8  
 The pattern that is forming with 15.j5 16.i6 17.j6 18.i7 19.j7 20.i8 21.j8  is called a ladder. At some point, blue must play a move that stops the latter, or else red will reach the bottom. 22.g12  effectively blocks red to the left. The space on the right is too small for red to connect
 Comment
-  }
+  },
+  
+  body: <<-Comment
+47.h5
+Red's big group on j4 is connected to his stone on e9. This is because if 48.f6 49.g8  , then red can connect in two ways, for instance 50.h6 51.h8  or if 50.h9 51.h6    whereas if  | 48.g8 49.f6  then red is connected by bridges to j4. Then 50.e10 51.d10 52.c12 53.d11 54.d13 55.e12 .
+
+j4 is connected to the top as well, for instance  | 48.k1 49.h3 50.i2 51.h2 
+Comment
+},
   ])
   
   game.comments.each {|comment| comment.user = user }

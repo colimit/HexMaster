@@ -1,8 +1,25 @@
-<div class="media-body">
+<div class="edit-comment hidden">
+	<div class="preview-area comment-body"></div>
+	<form>
+		<textarea type="text" class="form-control" rows="3" name="comment[body]"   id="body"><%=comment.escape("body") %></textarea>
+		<input type="hidden" name="comment[id]" 
+		value="<%= comment.id %>" id="comment[id]">
+		<button class="btn btn-primary btn-xs comment-button" type="button" id="edit-cancel" >
+			Cancel
+		</button>
+		<input class="btn btn-danger btn-xs comment-button" type="submit" name="submit" value="Submit" id="edit-submit">
+	</form>
+	</div>
+</div>
+
+
+<div class="show-comment media-body">
   <hr>
   <h4 class="media-heading"> <div class="comment-username"><%= name %></div> 
 	  <div class="comment-time"> <%= comment.dateString()%> </div>
 	  </h4>
   <div class="comment-body"></div>
+  <button class="edit-comment-button btn btn-primary btn-xs">Edit</button>
+  <button class="delete-comment-button btn btn-danger btn-xs">Delete</button>
 </div>
 

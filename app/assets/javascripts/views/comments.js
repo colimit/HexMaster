@@ -9,8 +9,10 @@
 		
 		events: { 
 			"click .comment-move": "handleMoveClick",
-			"submit .new-comment": "handleCommentSubmission"
+			"submit .new-comment": "handleCommentSubmission",
+			"click .edit-comment-button": "openEdit"
 		},
+		
 	
 		initialize: function (options) {
 			this.gameNav = options.gameNav;
@@ -19,6 +21,14 @@
 			this.addContent();
 			this.listenTo(this.collection, "add", this.addComment)
 			this.listenTo(this.collection, "sync", this.fixScrollPosition)
+		},
+		
+		openEdit: function(event){
+			debugger
+			var target = $(event.target);
+			var comment = target.parents(".comment");
+			comment.find(".edit-comment").toggleClass("hidden");
+			comment.find(".show-comment").toggleClass("hidden");
 		},
 		
 		addContent: function () {
