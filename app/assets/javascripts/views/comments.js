@@ -24,7 +24,6 @@
 		},
 		
 		openEdit: function(event){
-			debugger
 			var target = $(event.target);
 			var comment = target.parents(".comment");
 			comment.find(".edit-comment").toggleClass("hidden");
@@ -49,6 +48,7 @@
 			var comment = move.parents(".comment");
 			var tokens = comment.find(".token");
 			var gameNav = this.gameNav;
+			gameNav.clearBranch();
 			tokens.each(function(index, token){
 				var data = $(token).data();
 				gameNav[data.type](data.value);
