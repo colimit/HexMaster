@@ -3,7 +3,8 @@ window.HexApp = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function() {  	// 
+  	// HexApp.currentUser = new HexApp.Models.User();
 	HexApp.router = new HexApp.Routers.Router({ $rootEl: $("#content") });
 	HexApp.$modalEl = $("#modal");
 	HexApp.games = new HexApp.Collections.Games();

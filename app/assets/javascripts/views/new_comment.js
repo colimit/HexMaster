@@ -68,7 +68,7 @@
 		},
 		
 		
-		newSession: function(){ debugger; new HexApp.Views.NewSession(); },
+		newSession: function(){ new HexApp.Views.NewSession(); },
 		
 		
 		newUser: function(){ new HexApp.Views.NewUser(); }

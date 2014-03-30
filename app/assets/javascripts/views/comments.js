@@ -21,7 +21,7 @@
 			//this view is made only after fetch
 			this.addContent();
 			this.listenTo(this.collection, "add", this.addComment);
-			this.listenTo(HexApp.currentUser, "change set", this.render);
+			this.listenTo(HexApp.currentUser, "change set", this.reset);
 		},
 		
 		findComment: function(element){
@@ -31,6 +31,12 @@
 				//use coersion
 				return id === view.model.id;
 			});
+		},
+		
+		reset: function (){
+			this.closeAllSubviews();
+			this.addContent();
+			this.render();
 		},
 		
 		openEdit: function(event){

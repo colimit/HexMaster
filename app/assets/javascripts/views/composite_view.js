@@ -46,13 +46,21 @@
 			return this;
 		},
 		
-		close: function (){
-			this.remove();
+		closeAllSubviews: function () {
+			var that = this
 			_(this.subviews()).each(function(selectorSubviews, selector){
+				that.subviews()[selector] = [];
+				var $selectorEl = that.$(selector);
+				$selectorEl.empty();
 				_(selectorSubviews).each(function (subview) {
 					if (subview.close) { subview.close() }
 				});
 			});
+		},
+		
+		close: function (){
+			this.remove();
+			this.closeAllSubviews();
 		}
 	});
 })();

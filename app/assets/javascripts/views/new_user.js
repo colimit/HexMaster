@@ -13,13 +13,13 @@
 		handleSubmit: function(event){
 			event.preventDefault();
 			var form = this.$("form");
-			var user     = new HexApp.Models.User();
+			var user = HexApp.currentUser;
 			var that = this;
 			var data = form.serializeJSON();
 			if (data.user.password === data.user.password_confirm){
 				user.save(data, {
-					success: function(model){
-						HexApp.currentUser = model;
+					success: function(model){						// 
+						// HexApp.currentUser = model;
 						HexApp.navbar.refresh();
 						that.teardown();
 					},
