@@ -8,7 +8,7 @@
 		template: JST['modals/new_user'],
 
 		// 
-		events: { "submit form": "handleSubmit" },
+		events: { "submit form": "handleSubmit"	 },
 
 		handleSubmit: function(event){
 			event.preventDefault();

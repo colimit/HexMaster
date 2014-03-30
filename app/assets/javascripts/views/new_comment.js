@@ -13,7 +13,10 @@
 		template: JST["comments/new"],
 		
 		events: { 'input textarea': "preview",
-				  "click #insert-branch": "insertBranch" },
+				  "click #insert-branch": "insertBranch",
+		 		  "click .new-session": "newSession",
+			  	  "click .new-user": "newUser"
+			   },
 			 
 		preview: function(){
 			var text = this.$("#body").val();
@@ -30,7 +33,10 @@
 		},
 		
 		render: function () {
-			var renderedContent = this.template({ game: this.model });
+			var renderedContent = this.template({ 
+				game: this.model,
+				user: HexApp.currentUser
+			});
 			this.$el.html(renderedContent);
 			if (this.gameNav.branch.length === 0){
 				this.$('#insert-branch').prop('disabled', true);
@@ -56,7 +62,13 @@
 				alert("Branch is empty.");
 			}
 			this.preview();
-		}
+		},
+		
+		
+		newSession: function(){ debugger; new HexApp.Views.NewSession(); },
+		
+		
+		newUser: function(){ new HexApp.Views.NewUser(); }
 		
 	});
 })();
