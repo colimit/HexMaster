@@ -5,7 +5,7 @@
 		
 		initialize: function (options) {
 			this.gameNav = options.gameNav;
-			this.gameNav.on("change", this.render.bind(this));
+			this.gameNav.on("change", this.update.bind(this));
 		},
 		
 		tagName: "form",
@@ -41,8 +41,6 @@
 			if (this.gameNav.branch.length === 0){
 				this.$('#insert-branch').prop('disabled', true);
 			}
-			var branchExists = this.gameNav.branch.length > 0;
-			this.$("#submit").prop('disabled', branchExists);
 			return this;
 		},
 		
@@ -62,6 +60,11 @@
 				alert("Branch is empty.");
 			}
 			this.preview();
+		},
+		
+		update: function(){
+			var branchExists = this.gameNav.branch.length > 0;
+			this.$("#insert-branch").prop('disabled', branchExists);
 		},
 		
 		
