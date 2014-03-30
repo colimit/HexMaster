@@ -64,7 +64,7 @@
 		
 		update: function(){
 			var branchExists = this.gameNav.branch.length > 0;
-			this.$("#insert-branch").prop('disabled', branchExists);
+			this.$("#insert-branch").prop('disabled', !branchExists);
 		},
 		
 		
