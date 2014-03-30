@@ -8,7 +8,6 @@
 	//a variation from the base move. It also has a copy of the board, which
 	//it is responsible for manipulating
 	
-	//The nav can be manipulated through...
 
 	HexApp.GameNav = function (game) {
 		this.gameMoves = game.get("moves");
@@ -33,15 +32,7 @@
 			while (!(i >= number) && board.handleMove(this.gameMoves[i])){
 				i++;
 			}
-			this.setBaseMove(i );
-		},
-		
-		
-		
-		setBaseMove: function (baseMove) {
-			this.baseMove = baseMove;
-			this.trigger("setBaseMove", baseMove);
-			this.trigger("setCurrentMove", baseMove);
+			this.baseMove = i;
 		},
 		
 		currentMoveNum: function () {
@@ -80,13 +71,10 @@
 	
 		clearBranch: function () {
 			this.branch = [];
-			this.trigger("clearBranch");
 		},
 		
 		setBranchMove: function (number, move) {
 			this.branch[number - 1] = move;
-			this.trigger("setBranchMove", number, move);
-			this.trigger("setCurrentMove", number);
 		},
 		
 		//calls the named event's callback, with any additional arguments passed
@@ -117,19 +105,11 @@
 			if (this.board.handleMove(move)) {
 				if (this.branch.length === 0 && 
 					this.gameMoves[this.baseMove] === move){
-						this.setBaseMove(this.baseMove + 1);
+						this.baseMove++;
 				} else {
-					this.setBranchMove(this.activeNumber() + 1, move);
+					this.setBranchMove(this.currentMoveNum() + 1, move);
 				}
 			}
-		},
-	
-		activeNumber: function () {
-			var moveNum;
-			this.branch.forEach( function (move, i){ 
-				if (move) { moveNum = i + 1; }
-			});
-			return moveNum || this.baseMove;
 		},
 		
 		next: function () {
@@ -149,6 +129,13 @@
 				if (move) moves.push((index + 1) + "." + move);
 			});
 			return moves.join(" ");
+		},
+		
+		winner: function () {
+			if (this.gameMoves[this.baseMove - 1] === "resign") {
+				var winner = this.board.oppositeColor(this.board.turnColor);
+			}
+			return this.board.winner() || winner;
 		}
 		
 	};

@@ -6,7 +6,8 @@
 		template: JST["games/show"],
 		
 		initialize: function () {
-			var gameNav = this.gameNav = new HexApp.GameNav(this.model);
+			var gameNav = new HexApp.GameNav(this.model);
+			gameNav.jump();
 			var boardView = new HexApp.Views.BoardShow({ gameNav: gameNav });
 			var movesView = new HexApp.Views.MoveTable({ gameNav: gameNav });
 			var commentsView = new HexApp.Views.Comments({ 
@@ -27,12 +28,7 @@
 			this.$el.html(renderedContent);
 			this.renderSubviews();
 			return this;
-		},
-		
-		reset: function () {
-			this.gameNav.jump();
-		},
-		
+		}
 
 	});
 })();

@@ -1,0 +1,7 @@
+<div class="media-body"><%= text %></div>
+
+
+<% if (comment.isOwned()) {%>
+	<a class="edit-comment-button btn btn-primary btn-xs">Edit</a>
+	<a class="delete-comment-button btn btn-danger btn-xs">Delete</a>
+<% } %>

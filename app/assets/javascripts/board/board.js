@@ -11,7 +11,6 @@
 				this.rows[i][j] = 0;
 			}
 		}
-		this.events = {};
 		this.turnColor = "red";
 	};
 
@@ -45,7 +44,6 @@
 		
 		changeTurn: function (color) {
 			this.turnColor = (color || this.oppositeColor(this.turnColor));
-			this.trigger("changeTurn", this.turnColor);
 		},
 	
 		oppositeColor: function(color){
@@ -72,7 +70,6 @@
 	
 		setHex: function(coord, color){
 			this.rows[coord[0]][coord[1]] = color;
-			this.trigger("setHex", coord, color);
 		},
 	
 		getHex: function(coord){
@@ -83,9 +80,7 @@
 			if (this.valid(move)) {
 				if (move === "swap") {
 					this.swap();
-				} else if (move === "resign") {
-					this.resign();
-				} else {
+				} else if (move != "resign") {
 					this.normalMove(HexApp.stringToCoord(move));
 				}
 				return true;
@@ -95,7 +90,7 @@
 		},	
 	
 		valid: function(move){
-			if (this.winner()) {return false; }
+			if (this.winner()) { return false; }
 			if (move === "swap"){
 				return this.canSwap();
 			} else if (move === "resign") {
@@ -122,30 +117,6 @@
 		normalMove: function(coord) {
 			this.setHex(coord, this.turnColor);
 			this.changeTurn();
-		},
-	
-	
-		//calls the named event's callback, with any additional arguments passed
-		//along
-		trigger: function(event) {
-			var that = this;
-			var args = [].slice.call(arguments, 1);
-			if (this.events[event]){
-				this.events[event].forEach(function(fn){
-					fn.apply(that, args);
-				});
-			}
-		
-		},
-	
-		//sets up an event
-		on: function(event, callback) {
-			this.events[event] = this.events[event] || [];
-			this.events[event].push(callback);
-		},
-	
-		resign: function() {
-			this.trigger("resign", this.oppositeColor(this.turnColor));
 		},
 	
 		undo: function() {

@@ -3,7 +3,7 @@ HexApp::Application.routes.draw do
     resources :moves, :only => [:show]
   end
   resources :advisors, :only => [:new, :create, :show]
-  resources :comments, :only => [:create]
+  resources :comments, :only => [:create, :destroy, :update]
   resource :session, :only => [:create, :destroy]
   resources :users, :only => [:create]
   resources :games, :only => [:show, :index], :defaults => { :format => 'json' }

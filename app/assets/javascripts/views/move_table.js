@@ -7,22 +7,18 @@
 			this.gameNav = options.gameNav;
 			this.gameMoves = this.gameNav.gameMoves;
 			this.gameLength = this.gameMoves.length;
-			this.rowViews = [];
-			this.makeRowViews();
-			this.gameNav.on("setBranchMove", this.setBranchMove.bind(this));
-			this.gameNav.on("clearBranch", this.clear.bind(this)); 
-			this.gameNav.on("setBaseMove", this.base.bind(this));
-			this.gameNav.on("setCurrentMove", this.setCurrentMove.bind(this));
-			this.scrollPosition = 0;
-			this.currentMoveNum = 0;
+			this.gameNav.on("change", this.render.bind(this));
 		},
 		
 		refreshScrollPosition: function(){
-			this.scrollPosition = this.$(".moves-table-body").scrollTop();
+			if (this.$(".moves-table-body").length){
+				this.scrollPosition = this.$(".moves-table-body").scrollTop();
+			}
 		}, 
 		
 		makeRowViews: function () {
 			var that = this;
+			this.rowViews = [];
 			this.gameMoves.forEach( function(move, i){
 				that.rowViews.push(new HexApp.Views.MoveRow({
 					gameMove: move,
@@ -43,27 +39,34 @@
 		},
 		
 		handleGameMoveClick: function (event) {
-			this.refreshScrollPosition();
 			var number = parseInt($(event.target).parent().data("number"), 10);
 			this.gameNav.jump(number);
+			this.gameNav.trigger("change");
 		},
 		
 		
 		handleBranchMoveClick: function (event) {
-			this.refreshScrollPosition();
 			var number = parseInt($(event.target).parent().data("number"), 10);
 			this.gameNav.branchJump(number);
+			this.gameNav.trigger("change");
 		},
 		
 		render: function() {
-			var that = this;
+			this.refreshScrollPosition();
+			this.$el.empty();
 			var renderedContent = this.template();
 			this.$el.html(renderedContent);
+			this.makeRowViews();
+			this.setBranch();
+			this.base();
+			this.setCurrentMove();
+			var that = this;
 			this.rowViews.forEach( function(rowView){
 				if (rowView) {
 					that.$(".moves-table-body").append(rowView.render().$el);
 				}
 			});
+			this.fixScrollPosition();
 			return this;
 		},
 		
@@ -76,8 +79,14 @@
 			this.render();
 		},
 		
+		setBranch: function(){
+			var that = this;
+			this.gameNav.branch.forEach(function(move, index){
+				that.setBranchMove(index + 1, move);
+			});
+		},
+		
 		setBranchMove: function(number, move) {
-			this.refreshScrollPosition();
 			if (this.rowViews[number - 1]){
 				this.rowViews[number - 1].setBranchMove(move);
 			} else {
@@ -85,41 +94,26 @@
 					branchMove: move,
 					number: number
 				}));
-				this.render();
 			}
 			if (this.rowViews[number - 1].isBlank()) {
 				this.rowViews[number - 1] = undefined;
-				this.render();
 			}
 		},
 		
-		base: function(moveNum){
-			this.rowViews.forEach(function(rowView, index){
-				if (moveNum != index + 1){
-					rowView.unbase();
-				} else if (moveNum === index + 1){
-					rowView.base();	
-				}
-			});
+		base: function(){
+			var moveNum = this.gameNav.baseMove;
+			this.rowViews[moveNum - 1] && this.rowViews[moveNum - 1].base();
 		},
 		
-		setCurrentMove: function(moveNum){
-			this.rowViews.forEach(function(rowView, index){
-				var selected = rowView.$el.hasClass("selected");
-				if (moveNum != index + 1 && selected) {
-					rowView.unselect();
-				} else if (moveNum === index + 1 && !selected){
-					rowView.select();
-				}
-			});
-			this.currentMoveNum = moveNum;
-			this.fixScrollPosition();
+		setCurrentMove: function(){
+			var moveNum = this.gameNav.currentMoveNum();
+			this.rowViews[moveNum - 1] && this.rowViews[moveNum - 1].select();
 		},
 		
 		fixScrollPosition: function(){
 			var tableBody = this.$(".moves-table-body");
 			var oldPosition = this.scrollPosition;
-			var moveNum = this.currentMoveNum;
+			var moveNum = this.gameNav.currentMoveNum();
 			if (oldPosition > this.scrollMin(moveNum)){
 				tableBody.scrollTop(this.scrollMin(moveNum) - 100);
 			} else if (oldPosition < this.scrollMax(moveNum)){

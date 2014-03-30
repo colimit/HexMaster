@@ -8,6 +8,8 @@
 			this.$el.attr("style", this.style());
 			this.$el.addClass("hex-label");
 			this.$el.attr("id", HexApp.coordToString(this.coord));
+			//labels do not change so are rendered once on initialize
+			this.render();
 		},
 
 		spaceTop: function () {

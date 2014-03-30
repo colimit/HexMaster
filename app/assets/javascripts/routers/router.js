@@ -1,6 +1,10 @@
 (function () {
 	"use strict";
 	/*global HexApp, Backbone */
+	
+	Backbone.View.prototype.close = function() {
+		this.remove();
+	};
 
 	HexApp.Routers.Router = Backbone.Router.extend({
 		routes: {
@@ -35,7 +39,8 @@
 				success: function (fetched){
 					var view = new HexApp.Views.GameShow({ model: fetched });
 					that._swapview(view);
-					view.reset()
+					//scroll bar must be fixed after the view is swapped
+					$(".moves-table-body").scrollTop(10000);
 				},
 				error: function (fetched, response) {
 					alert(response.responseText);
@@ -44,6 +49,9 @@
 		},
 
 		_swapview: function (view) {
+			if (this.currentView && this.currentView.close){
+				this.currentView.close();
+			}
 			this.$rootEl.empty();
 			this.$rootEl.html(view.render().$el);
 		}

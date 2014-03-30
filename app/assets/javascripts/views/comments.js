@@ -10,7 +10,8 @@
 		events: { 
 			"click .comment-move": "handleMoveClick",
 			"submit .new-comment": "handleCommentSubmission",
-			"click .edit-comment-button": "openEdit"
+			"click .edit-comment-button": "openEdit",
+			"click .delete-comment-button": "deleteComment"
 		},
 		
 	
@@ -20,16 +21,28 @@
 			//this view is made only after fetch
 			this.addContent();
 			this.listenTo(this.collection, "add", this.addComment)
-			this.listenTo(this.collection, "sync", this.fixScrollPosition)
+			this.listenTo(HexApp.currentUser, "change set", this.render);
+		},
+		
+		findComment: function(element){
+			var id = element.parents(".comment").data("id");
+			var commentViews = this.subviews()[".comments-list"]
+			return _.find(commentViews, function(view){
+				//use coersion
+				return id === view.model.id;
+			});
 		},
 		
 		openEdit: function(event){
-			var target = $(event.target);
-			var comment = target.parents(".comment");
-			comment.find(".edit-comment").toggleClass("hidden");
-			comment.find(".show-comment").toggleClass("hidden");
+			var element = $(event.target);
+			this.findComment(element).openUp();
 		},
 		
+		deleteComment: function(event){
+			var element = $(event.target);
+			this.findComment(element).deleteComment();
+		},
+
 		addContent: function () {
 			var that = this;
 			this.collection.each(function (comment){
@@ -54,6 +67,7 @@
 				gameNav[data.type](data.value);
 				if ($(token).is(move)) {return false};
 			});
+			gameNav.trigger("change");
 		},
 		
 		handleCommentSubmission: function (event) {
@@ -67,6 +81,8 @@
 		addComment: function (comment) {
 			var subview = new HexApp.Views.Comment({ model: comment });
 			this.addSubview(".comments-list", subview);
+			subview.render();
+			this.fixScrollPosition();
 		},
 		
 		fixScrollPosition: function(){

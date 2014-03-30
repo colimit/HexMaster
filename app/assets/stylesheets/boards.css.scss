@@ -127,7 +127,7 @@ hr {
   margin-top: 0px;
   background-color: #F5F5F5; }
 
-.media-body hr {
+.comment hr {
   border-color: #DDD; }
 
 .comment .media-heading {
@@ -220,17 +220,16 @@ hr {
 
 .comments-list {
   display: inline-block;
-  height: 340px;
+  height: 500px;
   overflow-y: scroll;
   width: 758px; }
 
 #body {
   width: 638px;
-  height: 66px;
   display: inline-block;
   float: left; }
 
-.comment-body {
+.media-body {
   white-space: pre-wrap; }
 
 .comment-button {
@@ -251,14 +250,22 @@ hr {
   font-size: 9pt;
   color: #999; }
 
+.comment-body .btn {
+  display: inline;
+  position: relative; }
+
 .game-top-seperator.bottom {
   position: relative;
   top: 360px; }
 
 .preview-area {
   margin-bottom: 5pt;
-  padding: 0pt;
-  width: 560pt; }
+  padding: 0pt; }
+  
+.new-comment .preview-area {
+   width: 554pt;
+   margin-left: 4pt
+}
 
 .preview-area h5 {
   margin-top: 0pt; }
@@ -300,19 +307,16 @@ hr {
   position: absolute;
   padding: 0px;
   color: #999; }
-  
-.new-comment {
-  width: 788px;
-}
 
-.tooltip-inner{
-	color: #555;
-	background-color: #D8D8D8;
-	border-bottom-color: #D8D8D8 ;
-}
+.new-comment {
+  width: 788px; }
+
+.tooltip-inner {
+  color: #555;
+  background-color: #D8D8D8;
+  border-bottom-color: #d8d8d8; }
 
 .tooltip.bottom .tooltip-arrow {
-	border-bottom-color: #E8E8E8;
-	color: #E8E8E8;
-	background-color: #E8E8E8;
-}
+  border-bottom-color: #E8E8E8;
+  color: #E8E8E8;
+  background-color: #E8E8E8; }

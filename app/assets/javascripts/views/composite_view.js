@@ -18,7 +18,6 @@
 	
 		renderSubviews: function () {
 			var that = this;
-		
 			_(this.subviews()).each(function(selectorSubviews, selector){
 				var $selectorEl = selector ? that.$(selector) : that.$el;
 				$selectorEl.empty(); 
@@ -36,18 +35,24 @@
 		},
 	
 		subviews: function () {
-			if (!this._subviews) {
-				this._subviews = {};
-			}
+			if (!this._subviews) { this._subviews = {}; }
 			return this._subviews;
 		},
-		
 		
 		render: function () {
 			var renderedContent = this.template();
 			this.$el.html(renderedContent);
 			this.renderSubviews();
 			return this;
+		},
+		
+		close: function (){
+			this.remove();
+			_(this.subviews()).each(function(selectorSubviews, selector){
+				_(selectorSubviews).each(function (subview) {
+					if (subview.close) { subview.close() }
+				});
+			});
 		}
 	});
 })();
