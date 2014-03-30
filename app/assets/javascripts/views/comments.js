@@ -75,6 +75,7 @@
 			var form = $(event.target);
 			var comment = this.collection.add(form.serializeJSON().comment);
 			this.$("#body").val("");
+			this.$(".new-comment .preview-area").empty();
 			comment.save();
 		},
 		
