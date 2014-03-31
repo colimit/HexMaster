@@ -236,7 +236,7 @@ hr {
   position: relative;
   top: 0px;
   display: inline-block;
-  }
+  width: 120px; }
 
 .radio .btn-danger {
   border-radius: 118pt; }
@@ -261,10 +261,11 @@ hr {
 .preview-area {
   margin-bottom: 5pt;
   padding: 0pt; }
-
+  
 .new-comment .preview-area {
-  width: 554pt;
-  margin-left: 4pt; }
+   width: 554pt;
+   margin-left: 4pt
+}
 
 .preview-area h5 {
   margin-top: 0pt; }
