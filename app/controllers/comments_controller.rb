@@ -1,6 +1,13 @@
 class CommentsController < ApplicationController
   
   def create
+<<<<<<< HEAD
+=======
+    unless current_user
+      render :json => "You are not authorized", :status => 403
+      return
+    end
+>>>>>>> launch
     @game = Game.find(params[:comment][:game_id])
     @comment = @game.comments.build(comments_params)
     @comment.user = current_user

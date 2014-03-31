@@ -19,7 +19,11 @@ HexApp.Views.NewSession = HexApp.BaseModalView.extend({
 				that.teardown();
 			},
 			error: function(model, response){
+<<<<<<< HEAD
 				this.$(".error-message").addClass("alert alert-danger")
+=======
+				this.$(".error-message").addClass("alert alert-danger");
+>>>>>>> launch
 				this.$(".error-message").html(response.responseText);
 			}
 		});

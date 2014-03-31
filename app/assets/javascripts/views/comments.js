@@ -1,6 +1,6 @@
 (function () {
 	"use strict";
-	/*global HexApp, Backbone, JST, $ */
+	/*global HexApp, Backbone, JST, _, $ */
 	HexApp.Views.Comments = Backbone.CompositeView.extend({
 	
 		className: "comments-display",
@@ -20,17 +20,23 @@
 			//comments views added once on initialize since
 			//this view is made only after fetch
 			this.addContent();
-			this.listenTo(this.collection, "add", this.addComment)
-			this.listenTo(HexApp.currentUser, "change set", this.render);
+			this.listenTo(this.collection, "add", this.addComment);
+			this.listenTo(HexApp.currentUser, "change set", this.reset);
 		},
 		
 		findComment: function(element){
 			var id = element.parents(".comment").data("id");
-			var commentViews = this.subviews()[".comments-list"]
+			var commentViews = this.subviews()[".comments-list"];
 			return _.find(commentViews, function(view){
 				//use coersion
 				return id === view.model.id;
 			});
+		},
+		
+		reset: function (){
+			this.closeAllSubviews();
+			this.addContent();
+			this.render();
 		},
 		
 		openEdit: function(event){
@@ -53,7 +59,7 @@
 			this.addSubview(".new-comment", new HexApp.Views.NewComment({
 				model: this.model,
 				gameNav: this.gameNav
-			}))
+			}));
 		},
 		
 		handleMoveClick: function (event) {
@@ -65,7 +71,7 @@
 			tokens.each(function(index, token){
 				var data = $(token).data();
 				gameNav[data.type](data.value);
-				if ($(token).is(move)) {return false};
+				if ($(token).is(move)) {return false; }
 			});
 			gameNav.trigger("change");
 		},
@@ -75,6 +81,7 @@
 			var form = $(event.target);
 			var comment = this.collection.add(form.serializeJSON().comment);
 			this.$("#body").val("");
+			this.$(".new-comment .preview-area").empty();
 			comment.save();
 		},
 		

@@ -5,7 +5,7 @@
 		
 		initialize: function (options) {
 			this.gameNav = options.gameNav;
-			this.gameNav.on("change", this.render.bind(this));
+			this.gameNav.on("change", this.update.bind(this));
 		},
 		
 		tagName: "form",
@@ -13,7 +13,10 @@
 		template: JST["comments/new"],
 		
 		events: { 'input textarea': "preview",
-				  "click #insert-branch": "insertBranch" },
+				  "click #insert-branch": "insertBranch",
+		 		  "click .new-session": "newSession",
+			  	  "click .new-user": "newUser"
+			   },
 			 
 		preview: function(){
 			var text = this.$("#body").val();
@@ -30,13 +33,14 @@
 		},
 		
 		render: function () {
-			var renderedContent = this.template({ game: this.model });
+			var renderedContent = this.template({ 
+				game: this.model,
+				user: HexApp.currentUser
+			});
 			this.$el.html(renderedContent);
 			if (this.gameNav.branch.length === 0){
 				this.$('#insert-branch').prop('disabled', true);
 			}
-			var branchExists = this.gameNav.branch.length > 0;
-			this.$("#submit").prop('disabled', branchExists);
 			return this;
 		},
 		
@@ -56,7 +60,18 @@
 				alert("Branch is empty.");
 			}
 			this.preview();
-		}
+		},
+		
+		update: function(){
+			var branchExists = this.gameNav.branch.length > 0;
+			this.$("#insert-branch").prop('disabled', !branchExists);
+		},
+		
+		
+		newSession: function(){ new HexApp.Views.NewSession(); },
+		
+		
+		newUser: function(){ new HexApp.Views.NewUser(); }
 		
 	});
 })();
