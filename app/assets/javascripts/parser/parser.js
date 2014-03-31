@@ -21,9 +21,9 @@
 	
 			var pipeMatcher = /\| ?/;
 	
-			var moveMatcher = /(\d+)\.? *(([a-t]1?\d)|(swap)) ?/;
+			var moveMatcher = /(\d+)[\. ] *(([a-t]1?\d)|(swap)) ?/;
 	
-			var textMatcher = /([\s\S]+?)(?=\||\d+\.? *(([a-t]1?\d)|(swap)) ?|$)/;
+			var textMatcher = /([\s\S]+?)(?=\||\d+[\. ] *(([a-t]1?\d)|(swap)) ?|$)/;
 		
 			
 			return this.loop(
