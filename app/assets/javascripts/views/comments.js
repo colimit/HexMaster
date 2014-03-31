@@ -9,7 +9,7 @@
 		
 		events: { 
 			"click .comment-move": "handleMoveClick",
-			"submit .new-comment": "handleCommentSubmission",
+			"click #submit": "handleCommentSubmission",
 			"click .edit-comment-button": "openEdit",
 			"click .delete-comment-button": "deleteComment"
 		},
@@ -78,7 +78,7 @@
 		
 		handleCommentSubmission: function (event) {
 			event.preventDefault();
-			var form = $(event.target);
+			var form = $(event.target).parents("form");
 			var comment = this.collection.add(form.serializeJSON().comment);
 			this.$("#body").val("");
 			this.$(".new-comment .preview-area").empty();
