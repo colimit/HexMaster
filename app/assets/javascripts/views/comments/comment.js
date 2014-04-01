@@ -1,6 +1,8 @@
 /*global HexApp, Backbone, JST*/
 (function(){
 	"use strict";
+	//This view can be closed, showing the comment body view, or open,
+	//showing the edit form.
 	HexApp.Views.Comment = Backbone.View.extend({
 		
 		tagName: "li",
@@ -31,6 +33,10 @@
 			return this;
 		},
 		
+		
+		//The event which opens the comments is a delegated event of the
+		//comments view, but the others are individual to the comments since
+		//there will usually not be too many of these.
 		openAppend: function (){
 			this.events = {
 				"submit": "updateComment",
@@ -78,6 +84,7 @@
 			this.render();
 		},
 		
+		//handles edit submission
 		updateComment: function(event){
 			event.preventDefault();
 			this.open = false;
@@ -92,6 +99,7 @@
 			});
 		},
 		
+		//handles delete submision
 		deleteComment: function(){
 			var that = this
 			if (confirm("Are you sure you want to delete this comment?")) {
