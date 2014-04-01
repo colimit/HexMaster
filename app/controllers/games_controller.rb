@@ -15,7 +15,7 @@ class GamesController < ApplicationController
     end
       
     @moves = @game.moves.sort_by(&:move_number).map(&:move)[1..-1] || []
-    @comments = @game.comments.includes(:user)
+    @comments = @game.comments.includes(:user).order(:created_at)
     render "games/show"
   end
   

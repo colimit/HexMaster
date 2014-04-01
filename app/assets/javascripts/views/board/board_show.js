@@ -2,7 +2,8 @@
 (function(){
 	"use strict";
 	HexApp.Views.BoardShow = Backbone.View.extend({
-	
+		
+		//makes subviews, but doesn't affix them to the el
 		initialize: function (options){
 			this.gameNav = options.gameNav;
 			this.board = options.gameNav.board;
@@ -12,14 +13,16 @@
 			this.gameNav.on("change", this.render.bind(this));
 		},
 		
+		//Makes the subviews, but does not attach them
 		makeElements: function () {
 			this.makeSpaces();
 			this.makeRankLabels();
-			this.makeRowLabels();
+			this.makeFileLabels();
 			//the winner display is too simple for its own view class
 			this.$winnerEl = $("<div class='winner-display'>");
 		},
 		
+		//puts the subviews into the view's el
 		affixElements: function(){
 			var that = this;
 			this.$el.append(this.$winnerEl);
@@ -34,6 +37,7 @@
 			});
 		},
 		
+		//makes space subviews
 		makeSpaces: function(){
 			this.spaces = [];
 			for (var i = 0; i < this.size; i++){
@@ -47,6 +51,7 @@
 			}
 		},
 		
+		//makes the number labels to the left of the board
 		makeRankLabels: function() {
 			this.rankLabels = [];
 			for (var i = 0; i < this.size; i++ ) {
@@ -56,7 +61,8 @@
 			}
 		},
 		
-		makeRowLabels: function() {
+		//makes the letter labels on top of the board
+		makeFileLabels: function() {
 			this.fileLabels = [];
 			for (var i = 0; i < this.size; i++ ) {
 				this.fileLabels.push(
@@ -67,12 +73,15 @@
 		
 		events: { "click .hex-space": "handleSpaceClick" },
 		
+		
 		handleSpaceClick: function (event) {
 			var move = $(event.target).attr("id");
 			this.gameNav.push(move);
 			this.gameNav.trigger("change");
 		},
 		
+		//renders the winner display, e.g. "Red wins!"
+		//This shows up if red is solidly connected or if blue resigned.
 		renderWinner: function () {
 			var winner = this.gameNav.winner()
 			if (winner) {
@@ -101,7 +110,8 @@
 			this.affixElements();
 			return this;
 		},
-	
+		
+		//helper method for iterating over all space subviews
 		forEachSpace: function(callback) {
 			for (var i = 0; i < this.size; i++){
 				for (var j = 0; j < this.size; j++){

@@ -96,7 +96,7 @@ hr {
   position: absolute;
   top: 395px;
   margin: 10px;
-  width: 740px; }
+  /* width: 10000px; */ }
 
 .move-row .move-number-cell {
   text-align: center;
@@ -219,10 +219,13 @@ hr {
   display: inline-block; }
 
 .comments-list {
+  position: absolute;
+  left: 770px;
+  top: -370px;
   display: inline-block;
-  height: 400px;
+  height: 468px;
   overflow-y: scroll;
-  width: 758px; }
+  width: 380px; }
 
 #body {
   width: 638px;
@@ -261,11 +264,10 @@ hr {
 .preview-area {
   margin-bottom: 5pt;
   padding: 0pt; }
-  
+
 .new-comment .preview-area {
-   width: 554pt;
-   margin-left: 4pt
-}
+  width: 554pt;
+  margin-left: 4pt; }
 
 .preview-area h5 {
   margin-top: 0pt; }

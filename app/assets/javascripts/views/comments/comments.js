@@ -9,7 +9,7 @@
 		
 		events: { 
 			"click .comment-move": "handleMoveClick",
-			"submit .new-comment": "handleCommentSubmission",
+			"click #submit": "handleCommentSubmission",
 			"click .edit-comment-button": "openEdit",
 			"click .delete-comment-button": "deleteComment"
 		},
@@ -19,7 +19,7 @@
 			this.gameNav = options.gameNav;
 			//comments views added once on initialize since
 			//this view is made only after fetch
-			this.addContent();
+			this.makeSubviews();
 			this.listenTo(this.collection, "add", this.addComment);
 			this.listenTo(HexApp.currentUser, "change set", this.reset);
 		},
@@ -32,10 +32,12 @@
 				return id === view.model.id;
 			});
 		},
-		
+	
+		//makes the subviews once again match the collection,
+		//and renders.
 		reset: function (){
 			this.closeAllSubviews();
-			this.addContent();
+			this.makeSubviews();
 			this.render();
 		},
 		
@@ -49,7 +51,8 @@
 			this.findComment(element).deleteComment();
 		},
 
-		addContent: function () {
+		//adds makes the subviews
+		makeSubviews: function () {
 			var that = this;
 			this.collection.each(function (comment){
 				that.addSubview(".comments-list", new HexApp.Views.Comment({
@@ -61,6 +64,7 @@
 				gameNav: this.gameNav
 			}));
 		},
+		
 		
 		handleMoveClick: function (event) {
 			var move = $(event.target);
@@ -78,7 +82,7 @@
 		
 		handleCommentSubmission: function (event) {
 			event.preventDefault();
-			var form = $(event.target);
+			var form = $(event.target).parents("form");
 			var comment = this.collection.add(form.serializeJSON().comment);
 			this.$("#body").val("");
 			this.$(".new-comment .preview-area").empty();
@@ -92,11 +96,15 @@
 			this.fixScrollPosition();
 		},
 		
+		//when a comment is inserted, the box goes to the bottom
 		fixScrollPosition: function(){
 			var tableBody = this.$(".comments-list");
 			tableBody.scrollTop(1000000);
 		},
 		
+		
+		//renders all current subviews, but does not reset the subviews
+		//to match the colection
 		render: function () {
 			if (this.model.get("result")){
 				var renderedContent = this.template();

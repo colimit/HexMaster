@@ -22,7 +22,7 @@
 			var text = this.$("#body").val();
 			var commentPreview = HexApp.commentInterpreter.exec(text);
 			this.$(".preview-area").html(commentPreview);
-			if (text) { 
+			if ($.trim(text).length > 0) { 
 				this.$(".preview-area").html(
 					"<h5> preview: </h5>" + commentPreview
 				);
@@ -41,6 +41,7 @@
 			if (this.gameNav.branch.length === 0){
 				this.$('#insert-branch').prop('disabled', true);
 			}
+			this.$("#submit").prop('disabled', true);
 			return this;
 		},
 		
