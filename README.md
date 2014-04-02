@@ -17,8 +17,8 @@ This is a backbone app, consuming a restful rails JSON api which is implemented 
 The games records the app uses are provided from the turn-based game server [Little Golem](http://www.littlegolem.net), from which they are parsed server-side.
 
 
-#### [Demo](hex-master-demo.herokuapp.com)
-#### [Live](hexmaster.net)
+#### [Demo](http://hex-master-demo.herokuapp.com)
+#### [Live](http://hexmaster.net)
 
 
 ##### Thanks
